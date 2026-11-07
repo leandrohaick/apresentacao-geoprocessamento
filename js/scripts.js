@@ -56,11 +56,11 @@ const i18n = {
         sEmp3Title: "CPRM (Serviço Geológico)",
         sEmp3Desc: "Responsável pelo mapeamento geológico nacional, fundamental para identificar áreas de risco geológico, inundações e gerir recursos hídricos e minerais.",
         sEmp4Title: "IBGE",
-        sEmp4Desc: "O IBGE gerencia a malha geodésica e territorial do Brasil.",
+        sEmp4Desc: "O IBGE gerencia a malha geodésica oficial (SIRGAS 2000 / RBMC) e toda a base cartográfica e territorial do Brasil.",
         sEmp5Title: "INPE",
-        sEmp5Desc: "O INPE é referência global no monitoramento contínuo de desmatamento, com projetos como PRODES e DETER.",
+        sEmp5Desc: "O INPE é referência global no desenvolvimento de satélites e no monitoramento contínuo de desmatamento e queimadas, com projetos como PRODES e DETER.",
 
-        s6Title: "Análise Espacial & Mapa Interativo",
+        s6Title: "Mapa Interativo",
         s6Desc: "Explore camadas vetoriais, imagens de satélite, lugares de referência em Belém/UFPA e ferramentas práticas de SIG em tempo real.",
         
         s7Title: "Análise de Imóvel Rural",
@@ -125,7 +125,7 @@ const i18n = {
         auto_47: "Altimetria",
         auto_48: "Qual a altura das coisas (<strong>Relevo / Z</strong>).",
         auto_49: "Estação Total",
-        auto_50: "Mede com laser a laser, milímetro por milímetro.",
+        auto_50: "Mede a laser com altíssima precisão, milímetro por milímetro.",
         auto_51: "Curvas de Nível",
         auto_52: "O desenho do relevo no papel.",
         auto_53: "Estação Total em campo",
@@ -136,7 +136,7 @@ const i18n = {
         auto_58: "VS",
         auto_59: "Geodésia",
         auto_60: "Áreas regionais ou globais, onde a <strong>curvatura da Terra</strong> interfere obrigatoriamente.",
-        auto_61: "<i class=\"ph ph-tripod\"></i> <span data-i18n=\"s5I1Title\">Estação Total</span>",
+        auto_61: "<i class=\"ph ph-crosshair\"></i> <span data-i18n=\"s5I1Title\">Estação Total</span>",
         auto_62: "<i class=\"ph ph-broadcast\"></i> <span data-i18n=\"s5I2Title\">Receptor GNSS (RTK)</span>",
         auto_63: "<i class=\"ph ph-airplane\"></i> <span data-i18n=\"s5I3Title\">Drone / VANT</span>",
         auto_64: "Banco de Dados Geográficos",
@@ -152,10 +152,10 @@ const i18n = {
         auto_74: "(Adicione assets/video_banco2.mp4)",
         auto_75: "Análise Espacial",
         auto_76: "A inteligência do Geoprocessamento. É o cruzamento e interpretação de <strong>camadas de dados</strong> para resolver problemas complexos do mundo real.",
-        auto_77: "<i class=\"ph ph-layers\"></i> Técnicas Comuns:",
-        auto_78: "<strong style=\"color: white;\">Álgebra de Mapas:</strong> Sobreposição de mapas (ex: Solo + Relevo = Risco de Deslizamento).",
-        auto_79: "<strong style=\"color: white;\">Buffers:</strong> Zonas de influência (ex: 30m ao redor de um rio).",
-        auto_80: "<strong style=\"color: white;\">Heatmaps:</strong> Mapas de calor para manchas criminais ou focos de incêndio.",
+        auto_77: "<i class=\"ph ph-stack\"></i> Técnicas Comuns:",
+        auto_78: "<strong>Álgebra de Mapas:</strong> Sobreposição de mapas (ex: Solo + Relevo = Risco de Deslizamento).",
+        auto_79: "<strong>Buffers:</strong> Zonas de influência (ex: 30m ao redor de um rio).",
+        auto_80: "<strong>Heatmaps:</strong> Mapas de calor para manchas criminais ou focos de incêndio.",
         auto_81: "Vídeo: Análise Espacial em Ação",
         auto_82: "(Adicione assets/analise_espacial.mp4)",
         auto_83: "Automação (Python)",
@@ -168,9 +168,9 @@ const i18n = {
         auto_90: "Georreferenciamento",
         auto_91: "A \"certidão de nascimento\" geométrica de uma propriedade rural. Sem ela, o imóvel não pode ser desmembrado ou vendido legalmente.",
         auto_92: "<i class=\"ph ph-check-circle\"></i> O Processo (SIGEF / INCRA):",
-        auto_93: "<strong style=\"color: white;\">1. Coleta:</strong> GPS RTK mede os vértices da cerca.",
-        auto_94: "<strong style=\"color: white;\">2. Processamento:</strong> Fechamento do polígono (Software).",
-        auto_95: "<strong style=\"color: white;\">3. Certificação:</strong> O governo atesta que não há sobreposição com vizinhos ou terras indígenas.",
+        auto_93: "<strong>1. Coleta:</strong> GPS RTK mede os vértices da cerca.",
+        auto_94: "<strong>2. Processamento:</strong> Fechamento do polígono (Software).",
+        auto_95: "<strong>3. Certificação:</strong> O governo atesta que não há sobreposição com vizinhos ou terras indígenas.",
         auto_96: "Vídeo: Levantamento e SIGEF",
         auto_97: "(Adicione assets/video_georref.mp4)",
         auto_98: "CAR (Cadastro Ambiental)",
@@ -178,20 +178,32 @@ const i18n = {
         auto_100: "(Adicione assets/CAR.mp4)",
         auto_101: "Obrigatório para todo imóvel rural brasileiro. É um raio-x ambiental digitalizado, feito totalmente sobre <strong>imagens de satélite</strong>.",
         auto_102: "<i class=\"ph ph-leaf\"></i> O que é mapeado?",
-        auto_103: "<strong style=\"color: white;\">Área Total:</strong> O perímetro da fazenda.",
-        auto_104: "<strong style=\"color: white;\">Reserva Legal (RL):</strong> O percentual de mata que não pode ser desmatado (na Amazônia, 80%).",
-        auto_105: "<strong style=\"color: white;\">Áreas de Preservação Permanente (APP):</strong> Margens de rios, topos de morro e nascentes protegidas.",
+        auto_103: "<strong>Área Total:</strong> O perímetro da fazenda.",
+        auto_104: "<strong>Reserva Legal (RL):</strong> O percentual de mata que não pode ser desmatado (na Amazônia, 80%).",
+        auto_105: "<strong>Áreas de Preservação Permanente (APP):</strong> Margens de rios, topos de morro e nascentes protegidas.",
         auto_106: "Agricultura de Precisão",
         auto_107: "O uso da tecnologia espacial para maximizar a colheita. Esqueça o tratamento homogêneo: cada metro quadrado é tratado de forma única.",
         auto_108: "<i class=\"ph ph-plant\"></i> Do Satélite ao Trator:",
-        auto_109: "<strong style=\"color: white;\">Monitoramento (NDVI):</strong> Drones medem a fotossíntese e descobrem onde as plantas estão doentes.",
-        auto_110: "<strong style=\"color: white;\">Taxa Variável:</strong> O mapa é enviado ao computador de bordo do trator.",
-        auto_111: "<strong style=\"color: white;\">Execução:</strong> O trator (guiado por GPS) aplica veneno apenas onde a planta precisa. Economia e ecologia!",
+        auto_109: "<strong>Monitoramento (NDVI):</strong> Drones medem a fotossíntese e descobrem onde as plantas estão doentes.",
+        auto_110: "<strong>Taxa Variável:</strong> O mapa é enviado ao computador de bordo do trator.",
+        auto_111: "<strong>Execução:</strong> O trator (guiado por GPS) aplica insumos apenas onde a planta precisa. Economia e ecologia!",
         auto_112: "Vídeo: NDVI e Trator Autônomo",
         auto_113: "(Adicione assets/agricultura_de_precisao.mp4)",
         auto_114: "Instituições e Aplicações Reais",
-        auto_115: "<i class=\"ph ph-map-trifold\"></i> <span data-i18n=\"s6Title\">Análise Espacial &amp; Mapa Interativo</span>",
-        auto_116: "<i class=\"ph ph-arrow-counter-clockwise icon-spin-hover\"></i> <span data-i18n=\"btnRestart\">Reiniciar Apresentação</span>"
+        auto_115: "<i class=\"ph ph-map-trifold\"></i> <span data-i18n=\"s6Title\">Mapa Interativo</span>",
+        auto_116: "<i class=\"ph ph-arrow-counter-clockwise icon-spin-hover\"></i> <span data-i18n=\"btnRestart\">Reiniciar Apresentação</span>",
+        mapBaseSat: "Satélite",
+        mapBaseTopo: "Topo",
+        mapBaseDark: "Escuro",
+        mapBaseOsm: "Mapa",
+        mapLayersBtn: "Camadas",
+        mapLayersTitle: "Camadas SIG",
+        mapLayerPoints: "Marcos GNSS",
+        mapLayerPolygons: "Perímetros & UC",
+        mapLayerBuffers: "Buffers & APP",
+        mapLayerNetwork: "Rede Geodésica & Rios",
+        mapLayerNdvi: "Amostras NDVI",
+        mapDefaultHint: "Clique em qualquer feição para inspecionar"
     },
     en: {
         s1Title: "Geoprocessing",
@@ -250,12 +262,12 @@ const i18n = {
         sEmp3Title: "CPRM (Geological Survey)",
         sEmp3Desc: "National geological mapping, crucial for risk area identification, flood plains, and mineral resource management.",
         sEmp4Title: "IBGE",
-        sEmp4Desc: "IBGE maintains Brazil's national geodetic and territorial framework.",
+        sEmp4Desc: "IBGE manages Brazil's official geodetic framework (SIRGAS 2000 / RBMC) and its entire national cartographic and territorial base.",
         sEmp5Title: "INPE",
-        sEmp5Desc: "INPE is a global reference in continuous deforestation monitoring through projects such as PRODES and DETER.",
+        sEmp5Desc: "INPE is a global reference in satellite development and continuous deforestation and wildfire monitoring through projects such as PRODES and DETER.",
 
-        s6Title: "Spatial Analysis & Interactive Map",
-        s6Desc: "A GIS allows layered data visualization. Explore the interactive map rendering below.",
+        s6Title: "Interactive Map",
+        s6Desc: "Explore vector layers, satellite imagery, Belém/UFPA landmarks, and live GIS tools.",
         
         s7Title: "Rural Property Analysis",
         s7C1Title: "Georeferencing",
@@ -317,7 +329,7 @@ const i18n = {
         auto_47: "Altimetry",
         auto_48: "How high things are (<strong>Relief / Z</strong>).",
         auto_49: "Total Station",
-        auto_50: "Measures with laser, millimeter by millimeter.",
+        auto_50: "Measures by laser with ultra-high precision, millimeter by millimeter.",
         auto_51: "Contour Lines",
         auto_52: "Drawing the relief on paper.",
         auto_53: "Total Station in the field",
@@ -328,7 +340,7 @@ const i18n = {
         auto_58: "VS",
         auto_59: "Geodesy",
         auto_60: "Regional or global areas, where the <strong>Earth's curvature</strong> necessarily interferes.",
-        auto_61: "<i class=\"ph ph-tripod\"></i> <span data-i18n=\"s5I1Title\">Total Station</span>",
+        auto_61: "<i class=\"ph ph-crosshair\"></i> <span data-i18n=\"s5I1Title\">Total Station</span>",
         auto_62: "<i class=\"ph ph-broadcast\"></i> <span data-i18n=\"s5I2Title\">GNSS Receiver (RTK)</span>",
         auto_63: "<i class=\"ph ph-airplane\"></i> <span data-i18n=\"s5I3Title\">Drone / UAV</span>",
         auto_64: "Geographic Databases",
@@ -344,10 +356,10 @@ const i18n = {
         auto_74: "(Add assets/video_banco2.mp4)",
         auto_75: "Spatial Analysis",
         auto_76: "The intelligence of Geoprocessing. It is the cross-referencing and interpretation of <strong>data layers</strong> to solve complex real-world problems.",
-        auto_77: "<i class=\"ph ph-layers\"></i> Common Techniques:",
-        auto_78: "<strong style=\"color: white;\">Map Algebra:</strong> Overlaying maps (e.g., Soil + Relief = Landslide Risk).",
-        auto_79: "<strong style=\"color: white;\">Buffers:</strong> Zones of influence (e.g., 30m around a river).",
-        auto_80: "<strong style=\"color: white;\">Heatmaps:</strong> Heat maps for crime hotspots or fire outbreaks.",
+        auto_77: "<i class=\"ph ph-stack\"></i> Common Techniques:",
+        auto_78: "<strong>Map Algebra:</strong> Overlaying maps (e.g., Soil + Relief = Landslide Risk).",
+        auto_79: "<strong>Buffers:</strong> Zones of influence (e.g., 30m around a river).",
+        auto_80: "<strong>Heatmaps:</strong> Heat maps for crime hotspots or fire outbreaks.",
         auto_81: "Video: Spatial Analysis in Action",
         auto_82: "(Add assets/analise_espacial.mp4)",
         auto_83: "Automation (Python)",
@@ -360,9 +372,9 @@ const i18n = {
         auto_90: "Georeferencing",
         auto_91: "The geometric \"birth certificate\" of a rural property. Without it, the property cannot be legally subdivided or sold.",
         auto_92: "<i class=\"ph ph-check-circle\"></i> The Process (SIGEF / INCRA):",
-        auto_93: "<strong style=\"color: white;\">1. Collection:</strong> RTK GPS measures the fence vertices.",
-        auto_94: "<strong style=\"color: white;\">2. Processing:</strong> Polygon closure (Software).",
-        auto_95: "<strong style=\"color: white;\">3. Certification:</strong> The government certifies there is no overlap with neighbors or indigenous lands.",
+        auto_93: "<strong>1. Collection:</strong> RTK GPS measures the fence vertices.",
+        auto_94: "<strong>2. Processing:</strong> Polygon closure (Software).",
+        auto_95: "<strong>3. Certification:</strong> The government certifies there is no overlap with neighbors or indigenous lands.",
         auto_96: "Video: Survey and SIGEF",
         auto_97: "(Add assets/video_georref.mp4)",
         auto_98: "CAR (Environmental Cadastre)",
@@ -370,22 +382,34 @@ const i18n = {
         auto_100: "(Add assets/CAR.mp4)",
         auto_101: "Mandatory for every rural property in Brazil. It is a digitized environmental x-ray, made entirely over <strong>satellite images</strong>.",
         auto_102: "<i class=\"ph ph-leaf\"></i> What is mapped?",
-        auto_103: "<strong style=\"color: white;\">Total Area:</strong> The perimeter of the farm.",
-        auto_104: "<strong style=\"color: white;\">Legal Reserve (RL):</strong> The percentage of forest that cannot be deforested (in the Amazon, 80%).",
-        auto_105: "<strong style=\"color: white;\">Permanent Preservation Areas (APP):</strong> Riverbanks, hilltops, and protected springs.",
+        auto_103: "<strong>Total Area:</strong> The perimeter of the farm.",
+        auto_104: "<strong>Legal Reserve (RL):</strong> The percentage of forest that cannot be deforested (in the Amazon, 80%).",
+        auto_105: "<strong>Permanent Preservation Areas (APP):</strong> Riverbanks, hilltops, and protected springs.",
         auto_106: "Precision Agriculture",
         auto_107: "The use of space technology to maximize harvests. Forget homogeneous treatment: every square meter is treated uniquely.",
         auto_108: "<i class=\"ph ph-plant\"></i> From Satellite to Tractor:",
-        auto_109: "<strong style=\"color: white;\">Monitoring (NDVI):</strong> Drones measure photosynthesis and discover where plants are sick.",
-        auto_110: "<strong style=\"color: white;\">Variable Rate:</strong> The map is sent to the tractor's onboard computer.",
-        auto_111: "<strong style=\"color: white;\">Execution:</strong> The tractor (guided by GPS) applies chemicals only where the plant needs it. Economy and ecology!",
+        auto_109: "<strong>Monitoring (NDVI):</strong> Drones measure photosynthesis and discover where plants are sick.",
+        auto_110: "<strong>Variable Rate:</strong> The map is sent to the tractor's onboard computer.",
+        auto_111: "<strong>Execution:</strong> The tractor (guided by GPS) applies inputs only where the plant needs them. Economy and ecology!",
         auto_112: "Video: NDVI and Autonomous Tractor",
         auto_113: "(Add assets/agricultura_de_precisao.mp4)",
         auto_114: "Institutions and Real Applications",
-        auto_115: "<i class=\"ph ph-map-trifold\"></i> <span data-i18n=\"s6Title\">Spatial Analysis &amp; Interactive Map</span>",
+        auto_115: "<i class=\"ph ph-map-trifold\"></i> <span data-i18n=\"s6Title\">Interactive Map</span>",
         auto_117: "The workflow begins with <strong>collecting</strong> data in the field, from satellite images, or from drones. This information is then organized into layers, analyzed together, and transformed into maps that support faster and safer decisions.",
         auto_118: "In this way, geoprocessing connects technology and territory: it reveals patterns, identifies changes, and helps plan cities, protect the environment, and produce food more efficiently.",
-        auto_116: "<i class=\"ph ph-arrow-counter-clockwise icon-spin-hover\"></i> <span data-i18n=\"btnRestart\">Restart Presentation</span>"
+        auto_116: "<i class=\"ph ph-arrow-counter-clockwise icon-spin-hover\"></i> <span data-i18n=\"btnRestart\">Restart Presentation</span>",
+        mapBaseSat: "Satellite",
+        mapBaseTopo: "Topo",
+        mapBaseDark: "Dark",
+        mapBaseOsm: "Map",
+        mapLayersBtn: "Layers",
+        mapLayersTitle: "GIS Layers",
+        mapLayerPoints: "GNSS Benchmarks",
+        mapLayerPolygons: "Perimeters & Parks",
+        mapLayerBuffers: "Buffers & Riparian",
+        mapLayerNetwork: "Geodetic Net & Rivers",
+        mapLayerNdvi: "NDVI Samples",
+        mapDefaultHint: "Click any feature to inspect"
     }
 };
 
@@ -456,8 +480,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (restartBtn) {
         restartBtn.addEventListener('click', () => {
+            const prevSlide = slides[currentSlide];
             currentSlide = 0;
-            updateSlides();
+            updateSlides(prevSlide);
             updateUI();
         });
     }
@@ -489,50 +514,57 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight' || e.key === 'Space' || e.key === 'Enter') {
+        if (e.target && ['INPUT', 'TEXTAREA', 'SELECT', 'BUTTON'].includes(e.target.tagName)) return;
+        if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Space' || e.key === 'Enter') {
+            e.preventDefault();
             goToNextSlide();
         } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
             goToPrevSlide();
         }
     });
 
     let touchStartX = 0;
-    let touchEndX = 0;
+    let touchStartY = 0;
+    let ignoreSwipe = false;
 
     document.addEventListener('touchstart', e => {
+        const target = e.target;
+        ignoreSwipe = Boolean(
+            target && target.closest('#interactiveMap, .gis-places-chips, .gis-layers-popover, model-viewer, iframe, video, button, a, input, label')
+        );
         touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
     }, {passive: true});
 
     document.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
+        if (ignoreSwipe) return;
+        const dx = e.changedTouches[0].screenX - touchStartX;
+        const dy = e.changedTouches[0].screenY - touchStartY;
+        if (Math.abs(dx) >= 60 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+            if (dx < 0) {
+                goToNextSlide();
+            } else {
+                goToPrevSlide();
+            }
+        }
     }, {passive: true});
-
-    function handleSwipe() {
-        const minSwipeDistance = 50;
-        if (touchEndX < touchStartX - minSwipeDistance) {
-            goToNextSlide();
-        }
-        if (touchEndX > touchStartX + minSwipeDistance) {
-            goToPrevSlide();
-        }
-    }
 
     function goToNextSlide() {
         if (currentSlide < totalSlides - 1) {
+            const prevSlide = slides[currentSlide];
             currentSlide++;
-            updateSlides();
+            updateSlides(prevSlide);
             updateUI();
-            checkSlideTriggers();
         }
     }
 
     function goToPrevSlide() {
         if (currentSlide > 0) {
+            const prevSlide = slides[currentSlide];
             currentSlide--;
-            updateSlides();
+            updateSlides(prevSlide);
             updateUI();
-            checkSlideTriggers();
         }
     }
 
@@ -547,20 +579,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function updateSlides() {
+    function updateSlides(prevSlide) {
         slides.forEach((slide, index) => {
             slide.classList.remove('active', 'previous');
             if (index === currentSlide) {
                 slide.classList.add('active');
+                const panel = slide.querySelector('.glass-panel');
+                if (panel) panel.scrollTop = 0;
             } else if (index < currentSlide) {
                 slide.classList.add('previous');
             }
         });
-        syncSlideVideos();
+        syncSlideVideos(prevSlide);
         syncGeorefCarousel();
         checkSlideTriggers();
         requestAnimationFrame(fitActiveSlide);
-        setTimeout(fitActiveSlide, 350);
     }
 
     function latLonToUtm22M(lat, lon) {
@@ -644,8 +677,6 @@ document.addEventListener('DOMContentLoaded', () => {
             zoomControl: false
         });
 
-        L.control.scale({ metric: true, imperial: false, position: 'bottomleft' }).addTo(map);
-
         // Places Data
         const places = {
             ananindeua: {
@@ -682,7 +713,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 coords: [-1.4116, -48.4631],
                 zoom: 15,
                 color: '#a855f7',
-                icon: 'ph-radar',
+                icon: 'ph-broadcast',
                 title: 'CENSIPAM - Centro Regional Belém',
                 desc: 'Centro estratégico de Sensoriamento Remoto, radares meteorológicos e inteligência territorial da Amazônia Legal.',
                 alt: '18,5 m',
@@ -731,15 +762,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const placeMarkers = {};
 
+        const popupOptions = {
+            maxWidth: 300,
+            autoPanPaddingTopLeft: [68, 66],
+            autoPanPaddingBottomRight: [60, 56]
+        };
+
         // 1. Populate Points Layer
         Object.entries(places).forEach(([key, place]) => {
             const utm = latLonToUtm22M(place.coords[0], place.coords[1]);
             const icon = L.divIcon({
                 className: 'gis-custom-marker',
                 html: `<div class="gis-pin" style="--pin-color: ${place.color}"><i class="ph ${place.icon}"></i></div>`,
-                iconSize: [38, 38],
-                iconAnchor: [19, 38],
-                popupAnchor: [0, -36]
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -30]
             });
 
             const popupHtml = `
@@ -755,7 +792,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
 
-            const marker = L.marker(place.coords, { icon }).bindPopup(popupHtml, { maxWidth: 320 });
+            const marker = L.marker(place.coords, { icon }).bindPopup(popupHtml, popupOptions);
             marker.addTo(thematicLayers.points);
             placeMarkers[key] = marker;
         });
@@ -781,7 +818,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span><strong>Datum:</strong> SIRGAS 2000</span>
                 </div>
             </div>
-        `);
+        `, popupOptions);
 
         const utingaPolygon = L.polygon([
             [-1.4080, -48.4520],
@@ -802,7 +839,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span><strong>Classe:</strong> Preservação</span>
                 </div>
             </div>
-        `);
+        `, popupOptions);
 
         const combuPolygon = L.polygon([
             [-1.4885, -48.4810],
@@ -824,7 +861,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span><strong>Bioma:</strong> Amazônia</span>
                 </div>
             </div>
-        `);
+        `, popupOptions);
 
         ufpaPolygon.addTo(thematicLayers.polygons);
         utingaPolygon.addTo(thematicLayers.polygons);
@@ -843,7 +880,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h4>Buffer de Alcance Rádio RTK (450m)</h4>
                 <p>Zona de cobertura direta da Base GNSS instalada no Instituto de Geociências da UFPA.</p>
             </div>
-        `).addTo(thematicLayers.buffers);
+        `, popupOptions).addTo(thematicLayers.buffers);
 
         L.circle([-1.4782, -48.4545], {
             radius: 250,
@@ -856,7 +893,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h4>Buffer de Monitoramento Costeiro (250m)</h4>
                 <p>Faixa de amortecimento e controle de erosão marginal na orla do Rio Guamá.</p>
             </div>
-        `).addTo(thematicLayers.buffers);
+        `, popupOptions).addTo(thematicLayers.buffers);
 
         // 4. Populate Geodesic Network & Hydrography Layer
         L.polyline([
@@ -875,7 +912,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h4>Poligonal / Rede Geodésica (SIRGAS 2000)</h4>
                 <p>Vetores de linha de base GNSS conectando os marcos da UFPA, CENSIPAM, Baía do Guajará e Combu para ajustamento MMQ.</p>
             </div>
-        `).addTo(thematicLayers.network);
+        `, popupOptions).addTo(thematicLayers.network);
 
         L.polyline([
             [-1.4820, -48.5080],
@@ -891,7 +928,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h4>Eixo Hidrográfico: Rio Guamá</h4>
                 <p>Calha principal monitorada por ecobatímetro e imagens SAR.</p>
             </div>
-        `).addTo(thematicLayers.network);
+        `, popupOptions).addTo(thematicLayers.network);
 
         // 5. Populate NDVI Samples Layer
         const ndviSamples = [
@@ -916,11 +953,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         <span><strong>Sensor:</strong> Sentinel-2 / Drone</span>
                     </div>
                 </div>
-            `).addTo(thematicLayers.ndvi);
+            `, popupOptions).addTo(thematicLayers.ndvi);
         });
-
-        // Open initial UFPA popup
-        placeMarkers.ufpa.openPopup();
 
         // User Drawing Layer & Tool State
         const userDrawLayer = L.layerGroup().addTo(map);
@@ -935,10 +969,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const coordLatLonEl = document.getElementById('gisCoordLatLon');
         const coordUtmEl = document.getElementById('gisCoordUtm');
         const zoomLevelEl = document.getElementById('gisZoomLevel');
+        const layersPanel = document.getElementById('qgisLayersPanel');
+        const toggleLayersBtn = document.getElementById('qgisToggleLayers');
 
-        function setToolStatus(text, iconName = 'ph-info') {
+        function setToolStatus(text, dotColor = '') {
             if (!toolOutputEl) return;
-            toolOutputEl.innerHTML = `<i class="ph ${iconName}"></i> <span>${text}</span>`;
+            const styleAttr = dotColor ? ` style="background: ${dotColor};"` : '';
+            toolOutputEl.innerHTML = `<span class="gis-hud-dot"${styleAttr}></span><span>${text}</span>`;
+        }
+
+        function closeLayersPopover() {
+            if (layersPanel) layersPanel.classList.remove('is-open');
+            if (toggleLayersBtn) toggleLayersBtn.classList.remove('is-active');
         }
 
         // Toolbar switching
@@ -952,19 +994,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (activeTool === 'pan') {
                     mapEl.style.cursor = '';
-                    setToolStatus('Modo Inspeção ativo: clique em qualquer feição do mapa para ver seus atributos espaciais.', 'ph-cursor-click');
+                    setToolStatus('Clique em qualquer feição para inspecionar');
                 } else if (activeTool === 'distance') {
                     mapEl.style.cursor = 'crosshair';
-                    setToolStatus('Medir Distância: clique em 2 ou mais pontos no mapa para calcular a distância geodésica.', 'ph-ruler');
+                    setToolStatus('Distância: clique em 2 ou mais pontos no mapa', '#38bdf8');
                 } else if (activeTool === 'area') {
                     mapEl.style.cursor = 'crosshair';
-                    setToolStatus('Calcular Área: clique em 3 ou mais vértices no mapa para fechar um polígono e obter sua área (ha).', 'ph-polygon');
+                    setToolStatus('Área: clique em 3 ou mais vértices no mapa', '#10b981');
                 } else if (activeTool === 'buffer') {
                     mapEl.style.cursor = 'crosshair';
-                    setToolStatus('Análise de Buffer: clique em qualquer ponto do mapa para gerar um raio de influência de 500m.', 'ph-circles-three-plus');
+                    setToolStatus('Buffer: clique no mapa para raio de 500 m', '#f59e0b');
                 } else if (activeTool === 'point') {
                     mapEl.style.cursor = 'crosshair';
-                    setToolStatus('Coleta GNSS RTK: clique no mapa para implantar um vértice topográfico com coordenadas UTM 22M.', 'ph-crosshair');
+                    setToolStatus('GNSS RTK: clique para implantar vértice', '#3b82f6');
                 }
             });
         });
@@ -979,11 +1021,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 areaPoints = [];
                 areaPolygon = null;
                 rtkCounter = 0;
-                setToolStatus('Medições, buffers e vértices coletados foram limpos do mapa.', 'ph-check-circle');
+                setToolStatus('Medições limpas');
             });
         }
 
-        // QGIS Zoom In / Out Buttons
+        // Zoom In / Out / Reset Buttons
         const zoomInBtn = document.getElementById('gisZoomInBtn');
         if (zoomInBtn) {
             zoomInBtn.addEventListener('click', () => map.zoomIn());
@@ -992,22 +1034,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (zoomOutBtn) {
             zoomOutBtn.addEventListener('click', () => map.zoomOut());
         }
-
-        // Reset View Button
         const resetBtn = document.getElementById('gisResetBtn');
         if (resetBtn) {
             resetBtn.addEventListener('click', () => {
-                map.flyTo([-1.4580, -48.4620], 13, { duration: 1.2 });
-                setToolStatus('Extensão Total: exibindo toda a malha metropolitana Belém / Ananindeua / UFPA / Utinga / Combu.', 'ph-arrows-out');
+                map.closePopup();
+                map.flyTo([-1.4580, -48.4620], 13, { duration: 1.15 });
+                document.querySelectorAll('.gis-place-btn').forEach(b => b.classList.remove('is-active'));
+                setToolStatus('Visão metropolitana — Belém & Ananindeua');
             });
         }
 
-        // QGIS Floating Panels Toggle (Layers & Places)
-        const layersPanel = document.getElementById('qgisLayersPanel');
-        const placesPanel = document.getElementById('qgisPlacesPanel');
-        const toggleLayersBtn = document.getElementById('qgisToggleLayers');
-        const togglePlacesBtn = document.getElementById('qgisTogglePlaces');
-
+        // Layers Popover Toggle
         if (toggleLayersBtn && layersPanel) {
             toggleLayersBtn.addEventListener('click', () => {
                 const isOpen = layersPanel.classList.toggle('is-open');
@@ -1015,29 +1052,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        if (togglePlacesBtn && placesPanel) {
-            togglePlacesBtn.addEventListener('click', () => {
-                const isOpen = placesPanel.classList.toggle('is-open');
-                togglePlacesBtn.classList.toggle('is-active', isOpen);
-            });
-        }
-
         document.querySelectorAll('.qgis-panel-close[data-close-panel]').forEach(closeBtn => {
-            closeBtn.addEventListener('click', () => {
-                const panelId = closeBtn.getAttribute('data-close-panel');
-                const panel = document.getElementById(panelId);
-                if (!panel) return;
-                panel.classList.remove('is-open');
-                if (panelId === 'qgisLayersPanel' && toggleLayersBtn) {
-                    toggleLayersBtn.classList.remove('is-active');
-                }
-                if (panelId === 'qgisPlacesPanel' && togglePlacesBtn) {
-                    togglePlacesBtn.classList.remove('is-active');
-                }
-            });
+            closeBtn.addEventListener('click', closeLayersPopover);
         });
 
-        // Places Quick-Jump Buttons
+        // Places Quick-Jump Chips
         const placeBtns = document.querySelectorAll('.gis-place-btn[data-place]');
         placeBtns.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -1045,17 +1064,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const place = places[key];
                 if (!place) return;
                 placeBtns.forEach(b => b.classList.toggle('is-active', b === btn));
-                map.flyTo(place.coords, place.zoom, { duration: 1.25 });
+                closeLayersPopover();
+                map.flyTo(place.coords, place.zoom, { duration: 1.15 });
                 if (placeMarkers[key]) {
-                    setTimeout(() => placeMarkers[key].openPopup(), 650);
+                    setTimeout(() => placeMarkers[key].openPopup(), 600);
                 }
-                if (placesPanel) {
-                    placesPanel.classList.remove('is-open');
-                }
-                if (togglePlacesBtn) {
-                    togglePlacesBtn.classList.remove('is-active');
-                }
-                setToolStatus(`Localizado: ${place.title} (${place.code})`, 'ph-navigation-arrow');
+                setToolStatus(`${place.title} (${place.code})`, place.color);
             });
         });
 
@@ -1072,7 +1086,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         map.removeLayer(layer);
                     }
                 });
-                setToolStatus(`Mapa base alterado para: ${btn.textContent.trim()}`, 'ph-globe-hemisphere-west');
+                setToolStatus(`Mapa base: ${btn.textContent.trim()}`);
             });
         });
 
@@ -1091,35 +1105,34 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Live Mouse Coordinates & Zoom (QGIS Status Bar Format)
+        // Live Mouse Coordinates & Zoom (Minimalist Telemetry Format)
         map.on('mousemove', (e) => {
             const { lat, lng } = e.latlng;
             const utm = latLonToUtm22M(lat, lng);
             if (coordLatLonEl) {
-                coordLatLonEl.innerHTML = `<i class="ph ph-globe-simple"></i> ${lat.toFixed(4)}°, ${lng.toFixed(4)}°`;
+                coordLatLonEl.textContent = `${lat.toFixed(4)}°, ${lng.toFixed(4)}°`;
             }
             if (coordUtmEl) {
-                coordUtmEl.innerHTML = `<i class="ph ph-crosshair-simple"></i> Coordenada: ${utm.easting} E, ${utm.northing} N`;
+                coordUtmEl.textContent = `${utm.easting} E · ${utm.northing} N`;
             }
         });
 
         map.on('zoomend', () => {
             if (zoomLevelEl) {
-                const z = map.getZoom();
-                const approxScale = Math.round(591657550.5 / Math.pow(2, z)).toLocaleString('pt-BR');
-                zoomLevelEl.innerHTML = `<i class="ph ph-magnifying-glass-plus"></i> Escala 1:${approxScale} (Z${z})`;
+                zoomLevelEl.textContent = `Z${map.getZoom()}`;
             }
         });
 
         // Interactive Map Click Handler for GIS Tools
         map.on('click', (e) => {
+            closeLayersPopover();
             const latlng = e.latlng;
             const utm = latLonToUtm22M(latlng.lat, latlng.lng);
 
             if (activeTool === 'distance') {
                 distancePoints.push(latlng);
                 L.circleMarker(latlng, {
-                    radius: 6,
+                    radius: 5,
                     color: '#ffffff',
                     weight: 2,
                     fillColor: '#38bdf8',
@@ -1129,10 +1142,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (distancePoints.length === 1) {
                     distanceLine = L.polyline(distancePoints, {
                         color: '#38bdf8',
-                        weight: 3.5,
+                        weight: 3,
                         dashArray: '6, 4'
                     }).addTo(userDrawLayer);
-                    setToolStatus('1º ponto marcado. Clique em outro ponto para medir a distância.', 'ph-ruler');
+                    setToolStatus('1º ponto marcado — clique no próximo ponto', '#38bdf8');
                 } else {
                     distanceLine.setLatLngs(distancePoints);
                     let totalMeters = 0;
@@ -1140,14 +1153,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         totalMeters += map.distance(distancePoints[i - 1], distancePoints[i]);
                     }
                     const formatted = totalMeters >= 1000
-                        ? `${(totalMeters / 1000).toFixed(2)} km (${Math.round(totalMeters).toLocaleString('pt-BR')} m)`
+                        ? `${(totalMeters / 1000).toFixed(2)} km`
                         : `${totalMeters.toFixed(1)} m`;
-                    setToolStatus(`Distância acumulada (${distancePoints.length} pontos): ${formatted}`, 'ph-ruler');
+                    setToolStatus(`Distância (${distancePoints.length} pts): ${formatted}`, '#38bdf8');
                 }
             } else if (activeTool === 'area') {
                 areaPoints.push(latlng);
                 L.circleMarker(latlng, {
-                    radius: 6,
+                    radius: 5,
                     color: '#ffffff',
                     weight: 2,
                     fillColor: '#10b981',
@@ -1159,18 +1172,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         color: '#10b981',
                         weight: 2.5,
                         fillColor: '#10b981',
-                        fillOpacity: 0.28
+                        fillOpacity: 0.25
                     }).addTo(userDrawLayer);
                 } else {
                     areaPolygon.setLatLngs(areaPoints);
                 }
 
                 if (areaPoints.length < 3) {
-                    setToolStatus(`Vértice ${areaPoints.length}/3 adicionado. Clique em mais ${3 - areaPoints.length} ponto(s) para fechar o polígono.`, 'ph-polygon');
+                    setToolStatus(`Vértice ${areaPoints.length}/3 — adicione mais ${3 - areaPoints.length}`, '#10b981');
                 } else {
                     const sqMeters = calculatePolygonAreaSqMeters(areaPoints);
                     const hectares = sqMeters / 10000;
-                    setToolStatus(`Área do Polígono (${areaPoints.length} vértices): ${hectares.toFixed(2)} ha (${Math.round(sqMeters).toLocaleString('pt-BR')} m²)`, 'ph-polygon');
+                    setToolStatus(`Área (${areaPoints.length} vértices): ${hectares.toFixed(2)} ha`, '#10b981');
                 }
             } else if (activeTool === 'buffer') {
                 const radius = 500;
@@ -1178,9 +1191,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const circle = L.circle(latlng, {
                     radius,
                     color: '#f59e0b',
-                    weight: 2.5,
+                    weight: 2,
                     fillColor: '#f59e0b',
-                    fillOpacity: 0.22
+                    fillOpacity: 0.2
                 }).addTo(userDrawLayer);
 
                 L.circleMarker(latlng, {
@@ -1193,8 +1206,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 circle.bindPopup(`
                     <div class="gis-popup">
-                        <h4>Zona de Buffer Gerada (500m)</h4>
-                        <p>Área de influência calculada automaticamente ao redor do ponto selecionado.</p>
+                        <h4>Buffer de 500 m</h4>
+                        <p>Zona de influência calculada ao redor do ponto selecionado.</p>
                         <div class="gis-popup-meta">
                             <span><strong>Raio:</strong> 500 m</span>
                             <span><strong>Área:</strong> ${areaHa} ha</span>
@@ -1202,9 +1215,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span><strong>N:</strong> ${utm.northing}m</span>
                         </div>
                     </div>
-                `).openPopup();
+                `, popupOptions).openPopup();
 
-                setToolStatus(`Buffer de 500m gerado (${areaHa} ha) em E: ${utm.easting}m / N: ${utm.northing}m`, 'ph-circles-three-plus');
+                setToolStatus(`Buffer 500 m (${areaHa} ha) gerado`, '#f59e0b');
             } else if (activeTool === 'point') {
                 rtkCounter++;
                 const code = `V-${String(rtkCounter).padStart(2, '0')}`;
@@ -1219,7 +1232,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 marker.bindPopup(`
                     <div class="gis-popup">
                         <h4>Vértice GNSS RTK: ${code}</h4>
-                        <p>Coordenada coletada com correção diferencial (Precisão H: ±0,008m / V: ±0,015m).</p>
+                        <p>Coordenada coletada com correção diferencial (±0,008 m).</p>
                         <div class="gis-popup-meta">
                             <span><strong>Lat:</strong> ${latlng.lat.toFixed(5)}°</span>
                             <span><strong>Lon:</strong> ${latlng.lng.toFixed(5)}°</span>
@@ -1227,9 +1240,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span><strong>N:</strong> ${utm.northing}m</span>
                         </div>
                     </div>
-                `).openPopup();
+                `, popupOptions).openPopup();
 
-                setToolStatus(`Vértice RTK ${code} coletado — UTM 22M: ${utm.easting} E / ${utm.northing} N (±0,008m)`, 'ph-crosshair');
+                setToolStatus(`Vértice ${code} — ${utm.easting} E · ${utm.northing} N`, '#3b82f6');
             }
         });
     }
@@ -1268,7 +1281,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 4500);
     }
 
-    function syncSlideVideos() {
+    function syncSlideVideos(prevSlide) {
         const activeSlide = slides[currentSlide];
         const videos = document.querySelectorAll('video');
 
@@ -1278,6 +1291,19 @@ document.addEventListener('DOMContentLoaded', () => {
             video.autoplay = false;
             video.preload = 'none';
         });
+
+        if (prevSlide && prevSlide !== activeSlide) {
+            prevSlide.querySelectorAll('iframe[src*="youtube.com/embed/"]').forEach(iframe => {
+                setTimeout(() => {
+                    if (slides[currentSlide] !== prevSlide) {
+                        const currentSrc = iframe.getAttribute('src');
+                        if (currentSrc) {
+                            iframe.setAttribute('src', currentSrc);
+                        }
+                    }
+                }, 350);
+            });
+        }
 
         if (!activeSlide) return;
 
@@ -1308,13 +1334,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const activeSlide = slides[currentSlide];
         if (!activeSlide) return;
 
-        activeSlide.style.setProperty('--slide-scale', '1');
-        const panel = activeSlide.querySelector('.glass-panel') || activeSlide;
-
-        const widthScale = panel.clientWidth / panel.scrollWidth;
-        const heightScale = panel.clientHeight / panel.scrollHeight;
-        const scale = Math.min(1, widthScale, heightScale);
-        activeSlide.style.setProperty('--slide-scale', String(scale));
         if (activeSlide.id === 'slideMap' && map) {
             map.invalidateSize();
         }

@@ -1,558 +1,613 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Geoprocessamento - UFPA</title>
-<!-- Favicon -->
-<link href="assets/logo_turma_2025_icon.png" rel="icon" type="image/png"/>
-<!-- Phosphor Icons -->
-<script src="https://unpkg.com/@phosphor-icons/web"></script>
-<!-- Leaflet CSS for Map -->
-<link crossorigin="" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" rel="stylesheet">
-<link href="css/styles.css" rel="stylesheet"/>
-<!-- Model Viewer for 3D GLB -->
-<script src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js" type="module"></script>
-</link></head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Geoprocessamento - UFPA</title>
+    <!-- Favicon -->
+    <link href="assets/logo_turma_2025_icon.png" rel="icon" type="image/png"/>
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Leaflet CSS for Map -->
+    <link crossorigin="" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" rel="stylesheet"/>
+    <link href="css/styles.css" rel="stylesheet"/>
+    <!-- Model Viewer for 3D GLB -->
+    <script src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js" type="module"></script>
+</head>
 <body>
-<!-- Background Animation Elements -->
-<div class="bg-orb orb-1"></div>
-<div class="bg-orb orb-2"></div>
-<div class="bg-orb orb-3"></div>
-<!-- Top Bar Controls -->
-<div class="top-bar">
-<button class="icon-btn" id="themeToggle" title="Alternar Tema">
-<i class="ph ph-sun" id="themeIcon"></i>
-</button>
-<button class="icon-btn" id="langToggle" title="Change Language">
-            <img src="assets/logo_brazil.png" alt="Português" id="langIcon" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover;">
+    <!-- Background Ambient Orbs -->
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
+    <!-- Top Bar Controls -->
+    <div class="top-bar">
+        <button class="icon-btn" id="themeToggle" title="Alternar Tema" type="button">
+            <i class="ph ph-sun" id="themeIcon"></i>
         </button>
-</div>
-<main class="presentation-container">
-<!-- Progress Bar -->
-<div class="progress-bar">
-<div class="progress-fill" id="progressFill"></div>
-</div>
-<!-- Slide 1: Capa -->
-<section class="slide active">
-<div class="glass-panel text-center">
-<div class="logo-wrapper">
-<!-- UFPA -->
-<div>
-<img alt="UFPA Logo" class="header-logo logo-dark-theme" src="assets/Brasao-UFPA-branco.png"/>
-<img alt="UFPA Logo" class="header-logo logo-light-theme" src="assets/Brasao-UFPA-preto.png"/>
-</div>
-<!-- CAGEP -->
-<img alt="CAGEP Logo" class="header-logo" src="assets/Logo%20CAGEP.png"/>
-<!-- Turma -->
-<img alt="Turma 2025 Logo" class="header-logo logo-invertible" src="assets/Logo%20Turma%202025.png"/>
-</div>
-<h1 class="gradient-text mt-lg" data-i18n="s1Title">Geoprocessamento</h1>
-<p class="subtitle mb-lg" data-i18n="s1Subtitle">Da órbita terrestre à precisão milimétrica em campo</p>
-<div class="team-container">
-<p class="team-title" data-i18n="s1Team">Integrantes da Equipe:</p>
-<ul class="team-list">
-<li data-i18n="auto_2">Leandro Haick</li>
-<li data-i18n="auto_3">Amanda Caldas</li>
-<li data-i18n="auto_4">Sthefany Vitória</li>
-<li data-i18n="auto_5">Karla Eduarda</li>
-<li data-i18n="auto_6">Maria Reis</li>
-<li data-i18n="auto_7">Lucas Cruz</li>
-</ul>
-</div>
-<div class="start-hint">
-<p data-i18n="s1Hint">Pressione <kbd>→</kbd> para iniciar</p>
-</div>
-</div>
-</section>
-<!-- Slide 2: Geoprocessamento -->
-<section class="slide geoprocessamento-slide" id="slideGeoprocessamento">
-<div class="glass-panel" style="justify-content: flex-start;">
-<!-- Título na parte superior, grande -->
-<h2 class="gradient-text" data-i18n="auto_8" style="font-size: 4.5rem; margin-bottom: 3rem; text-transform: uppercase; letter-spacing: 2px;">
-                    Geoprocessamento
-                </h2>
-<div class="two-columns" style="align-items: flex-start; gap: 4rem; height: 100%;">
-<!-- Texto na Esquerda -->
-<div class="geoprocessamento-text" style="display: flex; flex-direction: column; justify-content: flex-start; height: 100%; padding-top: 1rem;">
-<p data-i18n="auto_9" style="font-size: 2.5rem; line-height: 1.5; margin-bottom: 2rem; color: var(--text-main); text-shadow: 0 2px 5px rgba(0,0,0,0.5);">
+        <button class="icon-btn" id="langToggle" title="Alternar Idioma / Change Language" type="button">
+            <img src="assets/logo_brazil.png" alt="Português" id="langIcon" class="lang-flag"/>
+        </button>
+    </div>
+
+    <main class="presentation-container">
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <!-- Slide 1: Capa -->
+        <section class="slide hero-slide active">
+            <div class="glass-panel hero-panel text-center">
+                <div class="logo-wrapper">
+                    <div>
+                        <img alt="UFPA Logo" class="header-logo logo-dark-theme" src="assets/brasao-ufpa-branco.png"/>
+                        <img alt="UFPA Logo" class="header-logo logo-light-theme" src="assets/brasao-ufpa-preto.png"/>
+                    </div>
+                    <img alt="CAGEP Logo" class="header-logo" src="assets/logo%20cagep.png"/>
+                    <img alt="Turma 2025 Logo" class="header-logo logo-invertible" src="assets/logo%20turma%202025.png"/>
+                </div>
+
+                <div class="hero-center">
+                    <h1 class="gradient-text" data-i18n="s1Title">Geoprocessamento</h1>
+                    <p class="subtitle" data-i18n="s1Subtitle">Da órbita terrestre à precisão milimétrica em campo</p>
+                </div>
+
+                <div class="team-container">
+                    <p class="team-title" data-i18n="s1Team">Integrantes da Equipe:</p>
+                    <ul class="team-list">
+                        <li data-i18n="auto_2">Leandro Haick</li>
+                        <li data-i18n="auto_3">Amanda Caldas</li>
+                        <li data-i18n="auto_4">Sthefany Vitória</li>
+                        <li data-i18n="auto_5">Karla Eduarda</li>
+                        <li data-i18n="auto_6">Maria Reis</li>
+                        <li data-i18n="auto_7">Lucas Cruz</li>
+                    </ul>
+                </div>
+
+                <div class="start-hint">
+                    <p data-i18n="s1Hint">Pressione <kbd>→</kbd> para iniciar</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 2: Geoprocessamento -->
+        <section class="slide geoprocessamento-slide" id="slideGeoprocessamento">
+            <div class="glass-panel">
+                <header class="slide-header">
+                    <div class="icon-wrapper gradient-bg"><i class="ph ph-globe-stand icon-pulse"></i></div>
+                    <h2 class="gradient-text" data-i18n="auto_8">Geoprocessamento</h2>
+                </header>
+
+                <div class="two-columns content-body">
+                    <div class="prose-stack geoprocessamento-text">
+                        <p class="prose-lead" data-i18n="auto_9">
                             O <strong>Geoprocessamento</strong> engloba um conjunto poderoso de tecnologias para coleta, armazenamento, tratamento e análise de dados com referência espacial (localização geográfica).
                         </p>
-<p data-i18n="auto_10" style="font-size: 2.1rem; line-height: 1.5; color: var(--text-muted);">
+                        <p class="prose-body" data-i18n="auto_10">
                             É através dele que transformamos o mundo real em modelos digitais, permitindo o cruzamento de informações para gestão ambiental, planejamento urbano e agricultura de precisão.
                         </p>
-<p data-i18n="auto_117" class="geoprocessamento-extra-text">
+                        <p class="prose-body geoprocessamento-extra-text" data-i18n="auto_117">
                             O fluxo de trabalho começa com a <strong>coleta</strong> de dados em campo, imagens de satélite ou drones. Depois, essas informações são organizadas em camadas, analisadas em conjunto e transformadas em mapas que apoiam decisões mais rápidas e seguras.
                         </p>
-<p data-i18n="auto_118" class="geoprocessamento-extra-text">
+                        <p class="prose-body geoprocessamento-extra-text" data-i18n="auto_118">
                             Assim, o geoprocessamento conecta tecnologia e território: revela padrões, identifica mudanças e ajuda a planejar cidades, proteger o meio ambiente e produzir alimentos com mais eficiência.
                         </p>
-</div>
-<!-- Duas Imagens Empilhadas na Direita -->
-<div class="geoprocessamento-images" style="display: flex; flex-direction: column; gap: 1.5rem; justify-content: flex-start; align-items: center;">
-<div style="border-radius: 16px; overflow: hidden; border: 2px solid var(--border-glass); box-shadow: 0 10px 30px rgba(0,0,0,0.5); background: #fff; padding: 10px;">
-<video aria-label="Processamento de Dados" loop="" muted="" playsinline="" controls="" src="assets/geoprocessamento1.mp4" style="max-width: 100%; max-height: 42vh; object-fit: contain; transition: transform 0.5s; display: block;"></video>
-</div>
-<div style="border-radius: 16px; overflow: hidden; border: 2px solid var(--border-glass); box-shadow: 0 10px 30px rgba(0,0,0,0.5); background: #fff; padding: 10px;">
-<video aria-label="Mapa Digital" loop="" muted="" playsinline="" controls="" src="assets/geoprocessamento2.mp4" style="max-width: 100%; max-height: 48vh; object-fit: contain; transition: transform 0.5s; display: block;"></video>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Slide 3: Sensoriamento Remoto -->
-<section class="slide technology-slide">
-<div class="glass-panel" style="justify-content: flex-start;">
-<!-- Título na parte superior, grande -->
-<h2 class="gradient-text" data-i18n="auto_11" style="font-size: 5rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 2px;">
-                    Sensoriamento Remoto
-                </h2>
-<div class="two-columns" style="align-items: center; gap: 4rem; flex: 1; min-height: 0; margin-top: 0;">
-<!-- Texto na Esquerda -->
-<div style="display: flex; flex-direction: column; justify-content: center; padding-bottom: 1rem;">
-<p data-i18n="auto_12" style="font-size: 3.3rem; line-height: 1.4; margin-bottom: 2.5rem; color: var(--text-main); text-shadow: 0 2px 5px rgba(0,0,0,0.5);">
+                    </div>
+
+                    <div class="media-stack geoprocessamento-images">
+                        <div class="media-frame">
+                            <video aria-label="Processamento de Dados" loop muted playsinline controls src="assets/geoprocessamento1.mp4"></video>
+                        </div>
+                        <div class="media-frame">
+                            <video aria-label="Mapa Digital" loop muted playsinline controls src="assets/geoprocessamento2.mp4"></video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Sensoriamento Remoto -->
+        <section class="slide technology-slide">
+            <div class="glass-panel">
+                <header class="slide-header">
+                    <div class="icon-wrapper gradient-bg"><i class="ph ph-planet icon-pulse"></i></div>
+                    <h2 class="gradient-text" data-i18n="auto_11">Sensoriamento Remoto</h2>
+                </header>
+
+                <div class="two-columns two-columns--reverse content-body">
+                    <div class="model-stage-wrap">
+                        <div class="model-stage">
+                            <model-viewer alt="Modelo 3D do Satélite GOES-R" auto-rotate camera-controls environment-image="legacy" exposure="1.2" shadow-intensity="1" src="assets/goes-r.glb"></model-viewer>
+                        </div>
+                        <p class="media-hint" data-i18n="auto_14"><i class="ph ph-hand-pointing"></i> Interaja com o modelo 3D do satélite GOES-R (NASA)</p>
+                    </div>
+
+                    <div class="prose-stack">
+                        <p class="prose-lead" data-i18n="auto_12">
                             O <strong>Sensoriamento Remoto</strong> é a ciência de obter informações sobre um alvo ou área na Terra sem contato físico direto.
                         </p>
-<p data-i18n="auto_13" style="font-size: 2.8rem; line-height: 1.45; color: var(--text-muted);">
+                        <p class="prose-body" data-i18n="auto_13">
                             Ele funciona através de sensores acoplados em <strong>satélites, aviões ou drones</strong>, que captam e medem a radiação eletromagnética (luz, calor, radar) refletida pela superfície terrestre.
                         </p>
-</div>
-<!-- Objeto 3D na Direita -->
-<div style="display: flex; flex-direction: column; justify-content: flex-start; align-items: center; width: 100%;">
-<div style="border-radius: 16px; overflow: hidden; border: 2px solid var(--border-glass); box-shadow: 0 10px 30px rgba(0,0,0,0.5); padding: 0; width: 100%; height: 62vh; display: flex; justify-content: center; align-items: center; position: relative; background: rgba(0,0,0,0.2);">
-<model-viewer alt="Modelo 3D do Satélite GOES-R" auto-rotate="" camera-controls="" environment-image="legacy" exposure="1.2" shadow-intensity="1" src="assets/GOES-R.glb" style="width: 100%; height: 100%; outline: none;"></model-viewer>
-</div>
-<p data-i18n="auto_14" style="margin-top: 1.2rem; color: var(--text-muted); font-size: 1.6rem; font-weight: 500;"><i class="ph ph-hand-pointing"></i> Interaja com o modelo 3D do satélite GOES-R (NASA)</p>
-</div>
-</div>
-</div>
-</section>
-<!-- Slide 4: NASA 3D -->
-<section class="slide nasa-slide" id="slideNasa">
-<div class="glass-panel map-panel">
-<h2 class="gradient-text justify-center" data-i18n="auto_15"><i class="ph ph-planet icon-spin"></i> <span data-i18n="s3Title">Programa de Satélites 3D (NASA)</span></h2>
-<p class="mb-md text-center" data-i18n="s3Desc">Interaja com os satélites em tempo real. Gire o globo, dê zoom e clique sobre eles para ver informações orbitais e instrumentos a bordo.</p>
-<div class="iframe-container">
-<iframe allowfullscreen="" frameborder="0" height="100%" src="https://eyes.nasa.gov/apps/earth/#/" width="100%"></iframe>
-</div>
-</div>
-</section>
-<!-- Slide 5: Radares Externos -->
-<section class="slide" id="slideRadaresExternos">
-<div class="glass-panel" style="justify-content: center; align-items: center;">
-<h2 class="gradient-text" data-i18n="auto_16" style="font-size: 4.5rem; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 2px;">
-                    Plataformas Globais
-                </h2>
-<p data-i18n="auto_17" style="font-size: 2rem; color: var(--text-muted); text-align: center; margin-bottom: 4rem; max-width: 900px;">
-                    Acesse em tempo real painéis de monitoramento de satélites e sensores espalhados pelo globo clicando nas ferramentas abaixo.
-                </p>
-<div class="cards-grid two-cols" style="gap: 4rem; width: 100%; max-width: 1000px;">
-<!-- Card 1: Orbital Radar -->
-<a class="app-card interactive-card platform-card platform-card--orbital" href="https://orbitalradar.com/" target="_blank">
-<div class="platform-icon">
-<svg aria-hidden="true" class="radar-icon" viewbox="0 0 100 100">
-<defs>
-<lineargradient gradientunits="userSpaceOnUse" id="radarSweepGrad" x1="18" x2="50" y1="30" y2="8">
-<stop offset="0" stop-color="currentColor" stop-opacity="0"></stop>
-<stop offset="1" stop-color="currentColor" stop-opacity="0.55"></stop>
-</lineargradient>
-</defs>
-<circle cx="50" cy="50" fill="none" r="44" stroke="currentColor" stroke-width="3"></circle>
-<circle cx="50" cy="50" fill="none" opacity="0.6" r="30" stroke="currentColor" stroke-width="2"></circle>
-<circle cx="50" cy="50" fill="none" opacity="0.45" r="16" stroke="currentColor" stroke-width="2"></circle>
-<line opacity="0.3" stroke="currentColor" stroke-width="1.5" x1="50" x2="50" y1="6" y2="94"></line>
-<line opacity="0.3" stroke="currentColor" stroke-width="1.5" x1="6" x2="94" y1="50" y2="50"></line>
-<g class="radar-sweep">
-<path d="M50 50 L18.89 18.89 A44 44 0 0 1 50 6 Z" fill="url(#radarSweepGrad)"></path>
-<line stroke="currentColor" stroke-linecap="round" stroke-width="2.5" x1="50" x2="50" y1="50" y2="6"></line>
-</g>
-<circle class="radar-blip radar-blip--1" cx="68" cy="34" fill="currentColor" r="3.2"></circle>
-<circle class="radar-blip radar-blip--2" cx="34" cy="64" fill="currentColor" r="2.6"></circle>
-<circle cx="50" cy="50" fill="currentColor" r="3"></circle>
-</svg>
-</div>
-<h3 class="platform-title" data-i18n="auto_18">Orbital Radar</h3>
-<p class="platform-desc" data-i18n="auto_19">Monitoramento e acompanhamento de trajetórias de satélites e estações espaciais.</p>
-<span class="click-hint platform-link" data-i18n="auto_20">Abrir Navegador <i class="ph ph-arrow-up-right"></i></span>
-</a>
-<!-- Card 2: Osiris AI -->
-<a class="app-card interactive-card platform-card platform-card--osiris" href="https://osirisai.live/?layers=maritime,satellites,cctv,cctv_previews,live_news,earthquakes,global_incidents,day_night,cables,sdk_sea,sdk_air,sdk_naval" target="_blank">
-<div class="platform-icon">
-<i class="ph ph-globe-hemisphere-west icon-pulse"></i>
-</div>
-<h3 class="platform-title" data-i18n="auto_21">Osiris AI Live</h3>
-<p class="platform-desc" data-i18n="auto_22">Camadas marítimas, clima, incidentes, sismologia e câmeras globais ao vivo.</p>
-<span class="click-hint platform-link" data-i18n="auto_23">Abrir Navegador <i class="ph ph-arrow-up-right"></i></span>
-</a>
-</div>
-</div>
-</section>
-<!-- Slide 6: Geodésia -->
-<section class="slide" id="slideGeodesia">
-<div class="glass-panel geo-panel">
-<!-- Cabeçalho -->
-<header class="geo-header">
-<h2 class="gradient-text geo-title" data-i18n="auto_24"><i class="ph ph-globe-hemisphere-east icon-pulse"></i> Geodésia</h2>
-<p class="geo-lead" data-i18n="auto_25">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: NASA 3D -->
+        <section class="slide nasa-slide" id="slideNasa">
+            <div class="glass-panel map-panel">
+                <header class="compact-embed-header">
+                    <h2 class="gradient-text" data-i18n="auto_15"><i class="ph ph-planet icon-spin"></i> <span data-i18n="s3Title">Programa de Satélites 3D (NASA)</span></h2>
+                    <p data-i18n="s3Desc">Interaja com os satélites em tempo real. Gire o globo, dê zoom e clique sobre eles para ver informações orbitais e instrumentos a bordo.</p>
+                </header>
+                <div class="iframe-container">
+                    <iframe allowfullscreen frameborder="0" height="100%" src="https://eyes.nasa.gov/apps/earth/#/" width="100%" title="NASA Eyes on the Earth"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Plataformas Globais -->
+        <section class="slide" id="slideRadaresExternos">
+            <div class="glass-panel centered-panel">
+                <header class="centered-header">
+                    <h2 class="gradient-text" data-i18n="auto_16">Plataformas Globais</h2>
+                    <p data-i18n="auto_17">
+                        Acesse em tempo real painéis de monitoramento de satélites e sensores espalhados pelo globo clicando nas ferramentas abaixo.
+                    </p>
+                </header>
+
+                <div class="cards-grid two-cols platform-grid">
+                    <!-- Card 1: Orbital Radar -->
+                    <a class="app-card interactive-card platform-card platform-card--orbital" href="https://orbitalradar.com/" target="_blank" rel="noopener noreferrer">
+                        <div class="platform-icon">
+                            <svg aria-hidden="true" class="radar-icon" viewBox="0 0 100 100">
+                                <defs>
+                                    <linearGradient gradientUnits="userSpaceOnUse" id="radarSweepGrad" x1="18" x2="50" y1="30" y2="8">
+                                        <stop offset="0" stop-color="currentColor" stop-opacity="0"></stop>
+                                        <stop offset="1" stop-color="currentColor" stop-opacity="0.55"></stop>
+                                    </linearGradient>
+                                </defs>
+                                <circle cx="50" cy="50" fill="none" r="44" stroke="currentColor" stroke-width="3"></circle>
+                                <circle cx="50" cy="50" fill="none" opacity="0.6" r="30" stroke="currentColor" stroke-width="2"></circle>
+                                <circle cx="50" cy="50" fill="none" opacity="0.45" r="16" stroke="currentColor" stroke-width="2"></circle>
+                                <line opacity="0.3" stroke="currentColor" stroke-width="1.5" x1="50" x2="50" y1="6" y2="94"></line>
+                                <line opacity="0.3" stroke="currentColor" stroke-width="1.5" x1="6" x2="94" y1="50" y2="50"></line>
+                                <g class="radar-sweep">
+                                    <path d="M50 50 L18.89 18.89 A44 44 0 0 1 50 6 Z" fill="url(#radarSweepGrad)"></path>
+                                    <line stroke="currentColor" stroke-linecap="round" stroke-width="2.5" x1="50" x2="50" y1="50" y2="6"></line>
+                                </g>
+                                <circle class="radar-blip radar-blip--1" cx="68" cy="34" fill="currentColor" r="3.2"></circle>
+                                <circle class="radar-blip radar-blip--2" cx="34" cy="64" fill="currentColor" r="2.6"></circle>
+                                <circle cx="50" cy="50" fill="currentColor" r="3"></circle>
+                            </svg>
+                        </div>
+                        <h3 class="platform-title" data-i18n="auto_18">Orbital Radar</h3>
+                        <p class="platform-desc" data-i18n="auto_19">Monitoramento e acompanhamento de trajetórias de satélites e estações espaciais.</p>
+                        <span class="click-hint platform-link" data-i18n="auto_20">Abrir Navegador <i class="ph ph-arrow-up-right"></i></span>
+                    </a>
+
+                    <!-- Card 2: Osiris AI -->
+                    <a class="app-card interactive-card platform-card platform-card--osiris" href="https://osirisai.live/?layers=maritime,satellites,cctv,cctv_previews,live_news,earthquakes,global_incidents,day_night,cables,sdk_sea,sdk_air,sdk_naval" target="_blank" rel="noopener noreferrer">
+                        <div class="platform-icon">
+                            <i class="ph ph-globe-hemisphere-west icon-pulse"></i>
+                        </div>
+                        <h3 class="platform-title" data-i18n="auto_21">Osiris AI Live</h3>
+                        <p class="platform-desc" data-i18n="auto_22">Camadas marítimas, clima, incidentes, sismologia e câmeras globais ao vivo.</p>
+                        <span class="click-hint platform-link" data-i18n="auto_23">Abrir Navegador <i class="ph ph-arrow-up-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Geodésia -->
+        <section class="slide" id="slideGeodesia">
+            <div class="glass-panel geo-panel">
+                <header class="geo-header">
+                    <h2 class="gradient-text geo-title" data-i18n="auto_24"><i class="ph ph-globe-hemisphere-east icon-pulse"></i> Geodésia</h2>
+                    <p class="geo-lead" data-i18n="auto_25">
                         A <strong>geodésia</strong> é a ciência que estuda a <strong>forma</strong>, as <strong>dimensões</strong> e o <strong>campo de gravidade</strong> da Terra, considerando a curvatura do planeta em grandes extensões.
                     </p>
-</header>
-<div class="geo-grid">
-<!-- Coluna 1: O que é e Aplicações (Texto Reduzido) -->
-<div class="geo-col">
-<h3 class="geo-section-title" data-i18n="auto_26"><i class="ph ph-books"></i> Resumo</h3>
-<ul class="geo-list">
-<li class="geo-item">
-<i class="ph ph-globe-hemisphere-east"></i>
-<div>
-<h4 data-i18n="auto_27">Forma da Terra</h4>
-<p data-i18n="auto_28">Estuda o formato real (<strong>Geoide</strong>) e matemático (<strong>Elipsoide</strong>).</p>
-</div>
-</li>
-<li class="geo-item">
-<i class="ph ph-magnet-straight"></i>
-<div>
-<h4 data-i18n="auto_29">Gravidade e Rotação</h4>
-<p data-i18n="auto_30">Mede a gravidade e o movimento da Terra no espaço.</p>
-</div>
-</li>
-<li class="geo-item">
-<i class="ph ph-gps-fix"></i>
-<div>
-<h4 data-i18n="auto_31">Base para o GPS</h4>
-<p data-i18n="auto_32">Sem geodésia, seu celular não saberia onde você está!</p>
-</div>
-</li>
-<li class="geo-item">
-<i class="ph ph-map-trifold"></i>
-<div>
-<h4 data-i18n="auto_33">Mapas Globais</h4>
-<p data-i18n="auto_34">Permite mapear países inteiros sem deformar as distâncias.</p>
-</div>
-</li>
-</ul>
-</div>
-<!-- Coluna 2: Imagens Grandes -->
-<div class="geo-media">
-<figure class="geo-figure geo-figure--geoide">
-<img aria-label="Representação do geoide" src="assets/geoide.gif" alt="Representação animada do geoide"/>
-<figcaption data-i18n="auto_35">Geoide: O formato real (e "amassado") da Terra</figcaption>
-</figure>
-<figure class="geo-figure geo-figure--radar">
-<video aria-label="Radar futurista" loop="" muted="" playsinline="" src="assets/Futuristic%20Radar%20Scan.mp4"></video>
-<figcaption data-i18n="auto_36">Coordenadas: Latitude e Longitude globais</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<!-- Slide 7: Topografia -->
-<section class="slide" id="slideTopografia">
-<div class="glass-panel geo-panel">
-<!-- Cabeçalho -->
-<header class="geo-header">
-<h2 class="gradient-text geo-title" data-i18n="auto_42"><i class="ph ph-mountains"></i> Topografia</h2>
-<p class="geo-lead" data-i18n="auto_43">
+                </header>
+
+                <div class="geo-grid">
+                    <div class="geo-col">
+                        <h3 class="geo-section-title" data-i18n="auto_26"><i class="ph ph-books"></i> Resumo</h3>
+                        <ul class="geo-list">
+                            <li class="geo-item">
+                                <i class="ph ph-globe-hemisphere-east"></i>
+                                <div>
+                                    <h4 data-i18n="auto_27">Forma da Terra</h4>
+                                    <p data-i18n="auto_28">Estuda o formato real (<strong>Geoide</strong>) e matemático (<strong>Elipsoide</strong>).</p>
+                                </div>
+                            </li>
+                            <li class="geo-item">
+                                <i class="ph ph-magnet-straight"></i>
+                                <div>
+                                    <h4 data-i18n="auto_29">Gravidade e Rotação</h4>
+                                    <p data-i18n="auto_30">Mede a gravidade e o movimento da Terra no espaço.</p>
+                                </div>
+                            </li>
+                            <li class="geo-item">
+                                <i class="ph ph-gps-fix"></i>
+                                <div>
+                                    <h4 data-i18n="auto_31">Base para o GPS</h4>
+                                    <p data-i18n="auto_32">Sem geodésia, seu celular não saberia onde você está!</p>
+                                </div>
+                            </li>
+                            <li class="geo-item">
+                                <i class="ph ph-map-trifold"></i>
+                                <div>
+                                    <h4 data-i18n="auto_33">Mapas Globais</h4>
+                                    <p data-i18n="auto_34">Permite mapear países inteiros sem deformar as distâncias.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="geo-media">
+                        <figure class="geo-figure geo-figure--geoide">
+                            <img aria-label="Representação do geoide" src="assets/geoide.gif" alt="Representação animada do geoide"/>
+                            <figcaption data-i18n="auto_35">Geoide: O formato real (e "amassado") da Terra</figcaption>
+                        </figure>
+                        <figure class="geo-figure geo-figure--radar">
+                            <video aria-label="Radar futurista" loop muted playsinline src="assets/Futuristic%20Radar%20Scan.mp4"></video>
+                            <figcaption data-i18n="auto_36">Coordenadas: Latitude e Longitude globais</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Topografia -->
+        <section class="slide" id="slideTopografia">
+            <div class="glass-panel geo-panel">
+                <header class="geo-header">
+                    <h2 class="gradient-text geo-title" data-i18n="auto_42"><i class="ph ph-mountains"></i> Topografia</h2>
+                    <p class="geo-lead" data-i18n="auto_43">
                         A <strong>topografia</strong> atua no mapeamento de áreas menores (geralmente até 50 km²), onde a superfície terrestre é considerada <strong>plana</strong> (Plano Topográfico). É essencial para projetos de alta precisão.
                     </p>
-</header>
-<div class="geo-grid">
-<!-- Coluna 1: Resumo (Texto Reduzido) -->
-<div class="geo-col">
-<h3 class="geo-section-title" data-i18n="auto_44"><i class="ph ph-ruler"></i> Resumo</h3>
-<ul class="geo-list">
-<li class="geo-item">
-<i class="ph ph-arrows-out-cardinal"></i>
-<div>
-<h4 data-i18n="auto_45">Planimetria</h4>
-<p data-i18n="auto_46">Onde as coisas estão (<strong>X, Y</strong>).</p>
-</div>
-</li>
-<li class="geo-item">
-<i class="ph ph-arrows-out-line-vertical"></i>
-<div>
-<h4 data-i18n="auto_47">Altimetria</h4>
-<p data-i18n="auto_48">Qual a altura das coisas (<strong>Relevo / Z</strong>).</p>
-</div>
-</li>
-<li class="geo-item">
-<i class="ph ph-camera"></i>
-<div>
-<h4 data-i18n="auto_49">Estação Total</h4>
-<p data-i18n="auto_50">Mede com laser a laser, milímetro por milímetro.</p>
-</div>
-</li>
-<li class="geo-item">
-<i class="ph ph-waves"></i>
-<div>
-<h4 data-i18n="auto_51">Curvas de Nível</h4>
-<p data-i18n="auto_52">O desenho do relevo no papel.</p>
-</div>
-</li>
-</ul>
-</div>
-<!-- Coluna 2: Imagens Grandes -->
-<div class="geo-media">
-<figure class="geo-figure geo-figure--topo1">
-<img aria-label="Estação Total Topográfica" src="assets/topografia1.gif" alt="Estação Total em campo"/>
-<figcaption data-i18n="auto_53">Estação Total em campo</figcaption>
-</figure>
-<figure class="geo-figure geo-figure--topo2">
-<img aria-label="Curvas de Nível" src="assets/topografia2.gif" alt="Mapa Topográfico e Relevo 3D"/>
-<figcaption data-i18n="auto_54">Mapa Topográfico e Relevo 3D</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<!-- Slide 8: Comparação Geodésia x Topografia -->
-<section class="slide" id="slideGeodesiaVsTopografia">
-<div class="glass-panel text-center" style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 3.5rem; padding: 3rem 4rem;">
-<h2 class="gradient-text justify-center" data-i18n="auto_55" style="font-size: 5.5rem; text-transform: uppercase; letter-spacing: 2px; margin: 0;"><i class="ph ph-scales" style="width: 6.5rem; height: 6.5rem; font-size: 4rem;"></i> Geodésia vs Topografia</h2>
-<div class="geo-compare" style="max-width: 1680px; width: 100%; padding: 5rem 5.5rem; gap: 4.5rem; display: flex; align-items: center; justify-content: space-between; border-radius: 32px;">
-<div class="geo-compare-item" style="flex: 1; flex-direction: column; text-align: center; gap: 2rem;">
-<i class="ph ph-mountains" style="font-size: 8.5rem;"></i>
-<div>
-<h4 data-i18n="auto_56" style="font-size: 4.4rem; margin-bottom: 1.5rem;">Topografia</h4>
-<p data-i18n="auto_57" style="font-size: 2.9rem; line-height: 1.45;">Mede áreas menores (até <strong>50 km²</strong>), assumindo que a Terra é <strong>plana</strong>.</p>
-</div>
-</div>
-<span class="geo-vs" data-i18n="auto_58" style="width: 8.5rem; height: 8.5rem; font-size: 3rem; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">VS</span>
-<div class="geo-compare-item" style="flex: 1; flex-direction: column; text-align: center; gap: 2rem;">
-<i class="ph ph-globe" style="font-size: 8.5rem;"></i>
-<div>
-<h4 data-i18n="auto_59" style="font-size: 4.4rem; margin-bottom: 1.5rem;">Geodésia</h4>
-<p data-i18n="auto_60" style="font-size: 2.9rem; line-height: 1.45;">Áreas regionais ou globais, onde a <strong>curvatura da Terra</strong> interfere obrigatoriamente.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Slide 8: Estação Total -->
-<section class="slide total-station-slide" id="slideTotalStation">
-<div class="glass-panel" style="justify-content: center;">
-<div class="two-columns" style="align-items: center; gap: 5rem;">
-<div class="media-container total-station-media">
-<img aria-label="Partes de uma estação total" class="slide-media total-station-diagram" src="assets/Partes-de-uma-estação-total.png" alt="Diagrama com as partes de uma estação total"/>
-</div>
-<div>
-<h2 class="gradient-text equip-title" data-i18n="auto_61" style="font-size: 4.5rem; margin-bottom: 2rem;"><i class="ph ph-tripod"></i> <span data-i18n="s5I1Title">Estação Total</span></h2>
-<p class="highlight-text equip-desc" data-i18n="s5I1Desc" style="font-size: 2.6rem; line-height: 1.5; color: var(--text-muted);">Une teodolito eletrônico (ângulos) e distanciômetro a laser. Exige 'visada' direta para o ponto com um prisma. Precisão de poucos milímetros.</p>
-</div>
-</div>
-</div>
-</section>
-<!-- Slide 9: GNSS -->
-<section class="slide technology-slide gnss-slide">
-<div class="glass-panel" style="justify-content: center;">
-<div class="two-columns" style="align-items: center; gap: 5rem;">
-<div class="media-container gnss-media">
-<video aria-label="GNSS Rover" class="slide-media gnss-video" loop="" muted="" playsinline="" controls="" src="assets/gnss.mp4"></video>
-</div>
-<div>
-<h2 class="gradient-text equip-title" data-i18n="auto_62" style="font-size: 4.5rem; margin-bottom: 2rem;"><i class="ph ph-broadcast"></i> <span data-i18n="s5I2Title">Receptor GNSS (RTK)</span></h2>
-<p class="highlight-text equip-desc" data-i18n="s5I2Desc" style="font-size: 2.6rem; line-height: 1.5; color: var(--text-muted);">O sistema Base-Rover usa satélites (GPS, GLONASS) com correções de rádio/internet para atingir precisão de centímetros instantaneamente.</p>
-</div>
-</div>
-</div>
-</section>
-<!-- Slide 10: Drone -->
-<section class="slide technology-slide">
-<div class="glass-panel" style="justify-content: center;">
-<div class="two-columns" style="align-items: center; gap: 5rem;">
-<div class="media-container" style="border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-<video aria-label="Drone VANT" class="slide-media" loop="" muted="" playsinline="" controls="" src="assets/drone.mp4" style="height: 500px; width: 100%; object-fit: cover;"></video>
-</div>
-<div>
-<h2 class="gradient-text equip-title" data-i18n="auto_63" style="font-size: 4.5rem; margin-bottom: 2rem;"><i class="ph ph-airplane"></i> <span data-i18n="s5I3Title">Drone / VANT</span></h2>
-<p class="highlight-text equip-desc" data-i18n="s5I3Desc" style="font-size: 2.6rem; line-height: 1.5; color: var(--text-muted);">Fotogrametria: Captura milhares de fotos sobrepostas do alto. O software processa tudo para criar Modelos 3D do terreno e ortomosaicos atualizados.</p>
-</div>
-</div>
-</div>
-</section>
-<!-- Slide 11: QGIS -->
-<section class="slide technology-slide">
-<div class="glass-panel" style="justify-content: center;">
-<div class="two-columns" style="align-items: center; gap: 5rem;">
-<div class="media-container" style="border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-<video aria-label="QGIS em ação" class="slide-media" loop="" muted="" playsinline="" controls="" src="assets/qgis_apresentacao.mp4" style="height: 500px; width: 100%; object-fit: cover;"></video>
-</div>
-<div>
-<div style="display: flex; align-items: center; gap: 2rem; margin-bottom: 2rem;">
-<img alt="QGIS Logo" src="assets/logo_qgis.png" style="width: 80px; height: 80px; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));"/>
-<h2 class="gradient-text equip-title" data-i18n="sSoft1Title" style="font-size: 4.5rem; margin: 0;">QGIS</h2>
-</div>
-<p class="highlight-text equip-desc" data-i18n="sSoft1Desc" style="font-size: 2.6rem; line-height: 1.5; color: var(--text-muted);">Software livre (Open Source), acessível e extremamente poderoso. Padrão na academia e empresas para manipulação de vetores e imagens de satélite.</p>
-</div>
-</div>
-</div>
-</section>
-<!-- Slide 12: ArcGIS Pro -->
-<section class="slide technology-slide">
-<div class="glass-panel" style="justify-content: center;">
-<div class="two-columns" style="align-items: center; gap: 5rem; flex-direction: row-reverse;">
-<div class="media-container" style="border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-<video aria-label="ArcGIS Pro em ação" class="slide-media" loop="" muted="" playsinline="" controls="" src="assets/arcgis_apresentacao.mp4" style="height: 500px; width: 100%; object-fit: cover;"></video>
-</div>
-<div>
-<div style="display: flex; align-items: center; gap: 2rem; margin-bottom: 2rem;">
-<img alt="ArcGIS Pro Logo" src="assets/logo_arcgis.png" style="width: 80px; height: 80px; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));"/>
-<h2 class="gradient-text equip-title" data-i18n="sSoft2Title" style="font-size: 4.5rem; margin: 0;">ArcGIS Pro</h2>
-</div>
-<p class="highlight-text equip-desc" data-i18n="sSoft2Desc" style="font-size: 2.6rem; line-height: 1.5; color: var(--text-muted);">Solução comercial robusta da Esri. Considerado o padrão da indústria global para grandes volumes de dados, análises complexas e inteligência espacial (GIS).</p>
-</div>
-</div>
-</div>
-</section>
-<!-- Slide 13: AutoCAD Civil 3D -->
-<section class="slide technology-slide">
-<div class="glass-panel" style="justify-content: center;">
-<div class="two-columns" style="align-items: center; gap: 5rem;">
-<div class="media-container" style="border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-<video aria-label="AutoCAD Civil 3D em ação" class="slide-media" loop="" muted="" playsinline="" controls="" src="assets/autocad_apresentacao.mp4" style="height: 500px; width: 100%; object-fit: cover;"></video>
-</div>
-<div>
-<div style="display: flex; align-items: center; gap: 2rem; margin-bottom: 2rem;">
-<img alt="AutoCAD Civil 3D Logo" src="assets/logo_civil3d.png" style="width: 80px; height: 80px; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));"/>
-<h2 class="gradient-text equip-title" data-i18n="sSoft3Title" style="font-size: 4.5rem; margin: 0;">AutoCAD Civil 3D</h2>
-</div>
-<p class="highlight-text equip-desc" data-i18n="sSoft3Desc" style="font-size: 2.6rem; line-height: 1.5; color: var(--text-muted);">Focado no lado da engenharia, infraestrutura e topografia. Fundamental para cálculo de volume de terraplenagem, traçado de rodovias e loteamentos.</p>
-</div>
-</div>
-</div>
-</section>
-<!-- Slide 14: Métrica TOPO -->
-<section class="slide technology-slide">
-<div class="glass-panel" style="justify-content: center;">
-<div class="two-columns" style="align-items: center; gap: 5rem; flex-direction: row-reverse;">
-<div class="media-container" style="border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-<video aria-label="Métrica TOPO em ação" class="slide-media" loop="" muted="" playsinline="" controls="" src="assets/metrica_topo.mp4" style="height: 500px; width: 100%; object-fit: cover;"></video>
-</div>
-<div>
-<div style="display: flex; align-items: center; gap: 2rem; margin-bottom: 2rem;">
-<img alt="Métrica TOPO Logo" class="software-logo software-logo-metrica" src="assets/logo_metrica.png" style="width: 130px; height: 130px; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));"/>
-<h2 class="gradient-text equip-title" data-i18n="sSoft4Title" style="font-size: 4.5rem; margin: 0;">Métrica TOPO</h2>
-</div>
-<p class="highlight-text equip-desc" data-i18n="sSoft4Desc" style="font-size: 2.6rem; line-height: 1.5; color: var(--text-muted);">Sistema brasileiro especializado no fluxo de trabalho de topografia, processamento de memoriais descritivos, georreferenciamento de imóveis e CAR.</p>
-</div>
-</div>
-</div>
-</section>
-<!-- Slide 16: Banco de Dados Geográficos -->
-<section class="slide technology-slide database-slide">
-<div class="glass-panel" style="justify-content: flex-start; padding: 4rem;">
-<header style="display: flex; align-items: center; gap: 2rem; margin-bottom: 3rem;">
-<div class="icon-wrapper gradient-bg"><i class="ph ph-hard-drives icon-pulse"></i></div>
-<h2 class="gradient-text" data-i18n="auto_64" style="font-size: 4.5rem; margin: 0; text-transform: uppercase;">Banco de Dados Geográficos</h2>
-</header>
-<div class="database-layout" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; height: 100%;">
-<!-- Explicação -->
-<div style="display: flex; flex-direction: column; justify-content: flex-start; gap: 2.5rem;">
-<p data-i18n="auto_65" style="font-size: 2.2rem; line-height: 1.5; color: var(--text-main);">
+                </header>
+
+                <div class="geo-grid geo-grid--reverse">
+                    <div class="geo-media">
+                        <figure class="geo-figure geo-figure--topo1">
+                            <img aria-label="Estação Total Topográfica" src="assets/topografia1.gif" alt="Estação Total em campo"/>
+                            <figcaption data-i18n="auto_53">Estação Total em campo</figcaption>
+                        </figure>
+                        <figure class="geo-figure geo-figure--topo2">
+                            <img aria-label="Curvas de Nível" src="assets/topografia2.gif" alt="Mapa Topográfico e Relevo 3D"/>
+                            <figcaption data-i18n="auto_54">Mapa Topográfico e Relevo 3D</figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="geo-col">
+                        <h3 class="geo-section-title" data-i18n="auto_44"><i class="ph ph-ruler"></i> Resumo</h3>
+                        <ul class="geo-list">
+                            <li class="geo-item">
+                                <i class="ph ph-arrows-out-cardinal"></i>
+                                <div>
+                                    <h4 data-i18n="auto_45">Planimetria</h4>
+                                    <p data-i18n="auto_46">Onde as coisas estão (<strong>X, Y</strong>).</p>
+                                </div>
+                            </li>
+                            <li class="geo-item">
+                                <i class="ph ph-arrows-out-line-vertical"></i>
+                                <div>
+                                    <h4 data-i18n="auto_47">Altimetria</h4>
+                                    <p data-i18n="auto_48">Qual a altura das coisas (<strong>Relevo / Z</strong>).</p>
+                                </div>
+                            </li>
+                            <li class="geo-item">
+                                <i class="ph ph-camera"></i>
+                                <div>
+                                    <h4 data-i18n="auto_49">Estação Total</h4>
+                                    <p data-i18n="auto_50">Mede a laser com altíssima precisão, milímetro por milímetro.</p>
+                                </div>
+                            </li>
+                            <li class="geo-item">
+                                <i class="ph ph-waves"></i>
+                                <div>
+                                    <h4 data-i18n="auto_51">Curvas de Nível</h4>
+                                    <p data-i18n="auto_52">O desenho do relevo no papel.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: Comparação Geodésia x Topografia -->
+        <section class="slide" id="slideGeodesiaVsTopografia">
+            <div class="glass-panel centered-panel">
+                <h2 class="gradient-text compare-heading" data-i18n="auto_55"><i class="ph ph-scales"></i> Geodésia vs Topografia</h2>
+
+                <div class="geo-compare">
+                    <div class="geo-compare-item">
+                        <div class="compare-icon compare-icon--topo">
+                            <i class="ph ph-mountains"></i>
+                        </div>
+                        <div>
+                            <h4 data-i18n="auto_56">Topografia</h4>
+                            <p data-i18n="auto_57">Mede áreas menores (até <strong>50 km²</strong>), assumindo que a Terra é <strong>plana</strong>.</p>
+                        </div>
+                    </div>
+
+                    <span class="geo-vs" data-i18n="auto_58">VS</span>
+
+                    <div class="geo-compare-item">
+                        <div class="compare-icon compare-icon--geo">
+                            <i class="ph ph-globe"></i>
+                        </div>
+                        <div>
+                            <h4 data-i18n="auto_59">Geodésia</h4>
+                            <p data-i18n="auto_60">Áreas regionais ou globais, onde a <strong>curvatura da Terra</strong> interfere obrigatoriamente.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 9: Estação Total -->
+        <section class="slide total-station-slide" id="slideTotalStation">
+            <div class="glass-panel">
+                <header class="slide-header">
+                    <div class="icon-wrapper gradient-bg"><i class="ph ph-crosshair icon-pulse"></i></div>
+                    <h2 class="gradient-text" data-i18n="s5Title">Instrumentos de Medição em Campo</h2>
+                </header>
+
+                <div class="two-columns content-body">
+                    <div class="media-container total-station-media">
+                        <img aria-label="Partes de uma estação total" class="slide-media total-station-diagram" src="assets/Partes-de-uma-estação-total.png" alt="Diagrama com as partes de uma estação total"/>
+                    </div>
+                    <div class="feature-copy">
+                        <h3 class="gradient-text equip-title" data-i18n="auto_61"><i class="ph ph-crosshair"></i> <span data-i18n="s5I1Title">Estação Total</span></h3>
+                        <p class="equip-desc" data-i18n="s5I1Desc">Une teodolito eletrônico (ângulos) e distanciômetro a laser. Exige 'visada' direta para o ponto com um prisma. Precisão de poucos milímetros.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 10: GNSS -->
+        <section class="slide technology-slide gnss-slide">
+            <div class="glass-panel">
+                <header class="slide-header">
+                    <div class="icon-wrapper gradient-bg"><i class="ph ph-broadcast icon-pulse"></i></div>
+                    <h2 class="gradient-text" data-i18n="s5Title">Instrumentos de Medição em Campo</h2>
+                </header>
+
+                <div class="two-columns two-columns--reverse content-body">
+                    <div class="media-container gnss-media">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/vgq59dJDZ7s?si=DM-jgXDdHyq_0z71" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="feature-copy">
+                        <h3 class="gradient-text equip-title" data-i18n="auto_62"><i class="ph ph-broadcast"></i> <span data-i18n="s5I2Title">Receptor GNSS (RTK)</span></h3>
+                        <p class="equip-desc" data-i18n="s5I2Desc">O sistema Base-Rover usa satélites (GPS, GLONASS) com correções de rádio/internet para atingir precisão de centímetros instantaneamente.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 11: Drone -->
+        <section class="slide technology-slide">
+            <div class="glass-panel">
+                <header class="slide-header">
+                    <div class="icon-wrapper gradient-bg"><i class="ph ph-airplane icon-pulse"></i></div>
+                    <h2 class="gradient-text" data-i18n="s5Title">Instrumentos de Medição em Campo</h2>
+                </header>
+
+                <div class="two-columns content-body">
+                    <div class="media-container aspect-video-box">
+                        <video aria-label="Drone VANT" class="slide-media" loop muted playsinline controls src="assets/drone.mp4"></video>
+                    </div>
+                    <div class="feature-copy">
+                        <h3 class="gradient-text equip-title" data-i18n="auto_63"><i class="ph ph-airplane"></i> <span data-i18n="s5I3Title">Drone / VANT</span></h3>
+                        <p class="equip-desc" data-i18n="s5I3Desc">Fotogrametria: Captura milhares de fotos sobrepostas do alto. O software processa tudo para criar Modelos 3D do terreno e ortomosaicos atualizados.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 12: QGIS -->
+        <section class="slide technology-slide">
+            <div class="glass-panel">
+                <header class="slide-header">
+                    <div class="icon-wrapper gradient-bg"><i class="ph ph-desktop icon-pulse"></i></div>
+                    <h2 class="gradient-text" data-i18n="sSoftTitle">Principais Softwares</h2>
+                </header>
+
+                <div class="two-columns content-body">
+                    <div class="media-container aspect-video-box">
+                        <video aria-label="QGIS em ação" class="slide-media" loop muted playsinline controls src="assets/qgis_apresentacao.mp4"></video>
+                    </div>
+                    <div class="feature-copy">
+                        <div class="brand-lockup">
+                            <div class="brand-badge">
+                                <img alt="QGIS Logo" src="assets/logo_qgis.png"/>
+                            </div>
+                            <h3 class="gradient-text equip-title" data-i18n="sSoft1Title">QGIS</h3>
+                        </div>
+                        <p class="equip-desc" data-i18n="sSoft1Desc">Software livre (Open Source), acessível e extremamente poderoso. Padrão na academia e empresas para manipulação de vetores e imagens de satélite.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 13: ArcGIS Pro -->
+        <section class="slide technology-slide">
+            <div class="glass-panel">
+                <header class="slide-header">
+                    <div class="icon-wrapper gradient-bg"><i class="ph ph-desktop icon-pulse"></i></div>
+                    <h2 class="gradient-text" data-i18n="sSoftTitle">Principais Softwares</h2>
+                </header>
+
+                <div class="two-columns two-columns--reverse content-body">
+                    <div class="media-container aspect-video-box">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/vNp4zStXbEY?si=jVCJVKrBd0tEU26A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="feature-copy">
+                        <div class="brand-lockup">
+                            <div class="brand-badge">
+                                <img alt="ArcGIS Pro Logo" src="assets/logo_arcgis.png"/>
+                            </div>
+                            <h3 class="gradient-text equip-title" data-i18n="sSoft2Title">ArcGIS Pro</h3>
+                        </div>
+                        <p class="equip-desc" data-i18n="sSoft2Desc">Solução comercial robusta da Esri. Considerado o padrão da indústria global para grandes volumes de dados, análises complexas e inteligência espacial (GIS).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 14: AutoCAD Civil 3D -->
+        <section class="slide technology-slide">
+            <div class="glass-panel">
+                <header class="slide-header">
+                    <div class="icon-wrapper gradient-bg"><i class="ph ph-desktop icon-pulse"></i></div>
+                    <h2 class="gradient-text" data-i18n="sSoftTitle">Principais Softwares</h2>
+                </header>
+
+                <div class="two-columns content-body">
+                    <div class="media-container aspect-video-box">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/tRiPxhnKo3k?si=34i_wOapAIv5sc-1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="feature-copy">
+                        <div class="brand-lockup">
+                            <div class="brand-badge">
+                                <img alt="AutoCAD Civil 3D Logo" src="assets/logo_civil3d.png"/>
+                            </div>
+                            <h3 class="gradient-text equip-title" data-i18n="sSoft3Title">AutoCAD Civil 3D</h3>
+                        </div>
+                        <p class="equip-desc" data-i18n="sSoft3Desc">Focado no lado da engenharia, infraestrutura e topografia. Fundamental para cálculo de volume de terraplenagem, traçado de rodovias e loteamentos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 15: Métrica TOPO -->
+        <section class="slide technology-slide">
+            <div class="glass-panel">
+                <header class="slide-header">
+                    <div class="icon-wrapper gradient-bg"><i class="ph ph-desktop icon-pulse"></i></div>
+                    <h2 class="gradient-text" data-i18n="sSoftTitle">Principais Softwares</h2>
+                </header>
+
+                <div class="two-columns two-columns--reverse content-body">
+                    <div class="media-container aspect-video-box">
+                        <video aria-label="Métrica TOPO em ação" class="slide-media" loop muted playsinline controls src="assets/metrica_topo.mp4"></video>
+                    </div>
+                    <div class="feature-copy">
+                        <div class="brand-lockup">
+                            <div class="brand-badge brand-badge--wide">
+                                <img alt="Métrica TOPO Logo" class="software-logo software-logo-metrica" src="assets/logo_metrica.png"/>
+                            </div>
+                            <h3 class="gradient-text equip-title" data-i18n="sSoft4Title">Métrica TOPO</h3>
+                        </div>
+                        <p class="equip-desc" data-i18n="sSoft4Desc">Sistema brasileiro especializado no fluxo de trabalho de topografia, processamento de memoriais descritivos, georreferenciamento de imóveis e CAR.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 16: Banco de Dados Geográficos -->
+        <section class="slide technology-slide database-slide">
+            <div class="glass-panel">
+                <header class="slide-header">
+                    <div class="icon-wrapper gradient-bg"><i class="ph ph-hard-drives icon-pulse"></i></div>
+                    <h2 class="gradient-text" data-i18n="auto_64">Banco de Dados Geográficos</h2>
+                </header>
+
+                <div class="two-columns database-layout content-body">
+                    <div class="prose-stack">
+                        <p class="prose-lead" data-i18n="auto_65">
                             Diferente de um banco comum que armazena apenas textos e números, um <strong>Banco de Dados Espacial</strong> armazena a <strong>geometria</strong> (Pontos, Linhas e Polígonos).
                         </p>
-<div style="background: rgba(0,0,0,0.4); border-left: 4px solid var(--accent); padding: 2rem; border-radius: 0 12px 12px 0;">
-<h4 data-i18n="auto_66" style="color: var(--accent); font-size: 1.8rem; margin-bottom: 1.5rem;"><i class="ph ph-terminal-window"></i> Exemplo de Consulta Espacial (SQL):</h4>
-<code style="font-size: 1.6rem; color: #a5d6ff; display: block; white-space: pre-wrap; font-family: monospace; line-height: 1.4;">SELECT fazenda.nome
+
+                        <div class="callout-card callout-card--blue">
+                            <h4 data-i18n="auto_66"><i class="ph ph-terminal-window"></i> Exemplo de Consulta Espacial (SQL):</h4>
+                            <code class="code-snippet">SELECT fazenda.nome
 FROM fazendas
 WHERE ST_Intersects(fazendas.geometria, rio.geometria);</code>
-<p data-i18n="auto_67" style="font-size: 1.6rem; color: #bbb; margin-top: 1.5rem; font-style: italic;">
+                            <p class="callout-note" data-i18n="auto_67">
                                 "Encontre todas as fazendas que são cortadas por um rio específico."
                             </p>
-</div>
-<div style="display: flex; gap: 2rem; margin-top: 1rem;">
-<span class="badge" data-i18n="auto_68" style="background: rgba(51, 103, 145, 0.2); border: 2px solid #336791; padding: 0.8rem 1.5rem; border-radius: 8px; color: #66a8db; font-weight: bold; font-size: 1.5rem;"><i class="ph ph-database"></i> PostgreSQL</span>
-<span class="badge" data-i18n="auto_69" style="background: rgba(153, 193, 33, 0.2); border: 2px solid #99c121; padding: 0.8rem 1.5rem; border-radius: 8px; color: #b7e036; font-weight: bold; font-size: 1.5rem;"><i class="ph ph-globe"></i> PostGIS</span>
-</div>
-</div>
-<!-- Vídeos de Exemplo -->
-<div class="database-media-stack" style="display: flex; flex-direction: column; gap: 2rem; height: 100%;">
-<div style="display: flex; align-items: center; justify-content: center; gap: 1rem;">
-<i class="ph ph-video-camera" style="font-size: 2rem; color: var(--accent);"></i>
-<h3 data-i18n="auto_70" style="font-size: 2rem; color: var(--accent); text-align: center; margin: 0;">Exemplos na Prática</h3>
-</div>
-<!-- Video 1 -->
-<div class="database-video-card" style="flex: 1; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-glass); box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; background: #000; min-height: 200px;">
-<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.8); z-index: 0;">
-<i class="ph ph-play-circle" style="font-size: 4rem; color: rgba(255,255,255,0.5); margin-bottom: 1rem;"></i>
-<span data-i18n="auto_71" style="color: rgba(255,255,255,0.5); font-size: 1.4rem;">Vídeo 1: Consulta em Tempo Real</span>
-<span data-i18n="auto_72" style="color: rgba(255,255,255,0.3); font-size: 1.1rem; margin-top: 0.5rem;">(Adicione assets/video_banco1.mp4)</span>
-</div>
-<video loop="" muted="" playsinline="" src="assets/banco_de_dados1.mp4" style="width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1;"></video>
-</div>
-<!-- Video 2 -->
-<div class="database-video-card" style="flex: 1; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-glass); box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; background: #000; min-height: 200px;">
-<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.8); z-index: 0;">
-<i class="ph ph-play-circle" style="font-size: 4rem; color: rgba(255,255,255,0.5); margin-bottom: 1rem;"></i>
-<span data-i18n="auto_73" style="color: rgba(255,255,255,0.5); font-size: 1.4rem;">Vídeo 2: Estrutura de Geometrias</span>
-<span data-i18n="auto_74" style="color: rgba(255,255,255,0.3); font-size: 1.1rem; margin-top: 0.5rem;">(Adicione assets/video_banco2.mp4)</span>
-</div>
-<video loop="" muted="" playsinline="" src="assets/banco_de_dados2.mp4" style="width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1;"></video>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Slide 17: Análise Espacial -->
-<section class="slide technology-slide visual-slide">
-<div class="glass-panel" style="justify-content: flex-start; padding: 4rem;">
-<header style="display: flex; align-items: center; gap: 2rem; margin-bottom: 3rem;">
-<div class="icon-wrapper gradient-bg"><i class="ph ph-intersect icon-pulse"></i></div>
-<h2 class="gradient-text" data-i18n="auto_75" style="font-size: 4.5rem; margin: 0; text-transform: uppercase;">Análise Espacial</h2>
-</header>
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; height: 100%;">
-<!-- Explicação -->
-<div style="display: flex; flex-direction: column; justify-content: flex-start; gap: 2.5rem;">
-<p data-i18n="auto_76" style="font-size: 2.2rem; line-height: 1.5; color: var(--text-main);">
+                        </div>
+
+                        <div class="badge-row">
+                            <span class="tech-badge tech-badge--pg" data-i18n="auto_68"><i class="ph ph-database"></i> PostgreSQL</span>
+                            <span class="tech-badge tech-badge--postgis" data-i18n="auto_69"><i class="ph ph-globe"></i> PostGIS</span>
+                        </div>
+                    </div>
+
+                    <div class="database-media-stack">
+                        <div class="media-stack-label">
+                            <i class="ph ph-video-camera"></i>
+                            <h3 data-i18n="auto_70">Exemplos na Prática</h3>
+                        </div>
+                        <div class="database-video-card">
+                            <video loop muted playsinline controls src="assets/banco_de_dados1.mp4"></video>
+                        </div>
+                        <div class="database-video-card">
+                            <video loop muted playsinline controls src="assets/banco_de_dados2.mp4"></video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 17: Análise Espacial -->
+        <section class="slide technology-slide visual-slide">
+            <div class="glass-panel">
+                <header class="slide-header">
+                    <div class="icon-wrapper gradient-bg"><i class="ph ph-intersect icon-pulse"></i></div>
+                    <h2 class="gradient-text" data-i18n="auto_75">Análise Espacial</h2>
+                </header>
+
+                <div class="two-columns content-body">
+                    <div class="visual-media">
+                        <video loop muted playsinline controls src="assets/analise_espacial.mp4"></video>
+                    </div>
+
+                    <div class="prose-stack">
+                        <p class="prose-lead" data-i18n="auto_76">
                             A inteligência do Geoprocessamento. É o cruzamento e interpretação de <strong>camadas de dados</strong> para resolver problemas complexos do mundo real.
                         </p>
-<div style="background: rgba(0,0,0,0.4); border-left: 4px solid #F57C00; padding: 2rem; border-radius: 0 12px 12px 0;">
-<h4 data-i18n="auto_77" style="color: #F57C00; font-size: 1.8rem; margin-bottom: 1.5rem;"><i class="ph ph-layers"></i> Técnicas Comuns:</h4>
-<ul style="font-size: 1.8rem; color: #bbb; line-height: 1.6; list-style: none; padding: 0;">
-<li data-i18n="auto_78"><strong style="color: white;">Álgebra de Mapas:</strong> Sobreposição de mapas (ex: Solo + Relevo = Risco de Deslizamento).</li>
-<li data-i18n="auto_79"><strong style="color: white;">Buffers:</strong> Zonas de influência (ex: 30m ao redor de um rio).</li>
-<li data-i18n="auto_80"><strong style="color: white;">Heatmaps:</strong> Mapas de calor para manchas criminais ou focos de incêndio.</li>
-</ul>
-</div>
-</div>
-<!-- Vídeo de Exemplo -->
-<div class="visual-media" style="flex: 1; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-glass); box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; background: #000; min-height: 250px;">
-<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.8); z-index: 0;">
-<i class="ph ph-play-circle" style="font-size: 5rem; color: rgba(255,255,255,0.5); margin-bottom: 1rem;"></i>
-<span data-i18n="auto_81" style="color: rgba(255,255,255,0.5); font-size: 1.6rem;">Vídeo: Análise Espacial em Ação</span>
-<span data-i18n="auto_82" style="color: rgba(255,255,255,0.3); font-size: 1.2rem; margin-top: 0.5rem;">(Adicione assets/analise_espacial.mp4)</span>
-</div>
-<video loop="" muted="" playsinline="" src="assets/analise_espacial.mp4" style="width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1;"></video>
-</div>
-</div>
-</div>
-</section>
-<!-- Slide 18: Automação e Programação -->
-<section class="slide technology-slide visual-slide">
-<div class="glass-panel" style="justify-content: flex-start; padding: 4rem;">
-<header style="display: flex; align-items: center; gap: 2rem; margin-bottom: 3rem;">
-<div class="icon-wrapper gradient-bg"><i class="ph ph-file-code icon-pulse"></i></div>
-<h2 class="gradient-text" data-i18n="auto_83" style="font-size: 4.5rem; margin: 0; text-transform: uppercase;">Automação (Python)</h2>
-</header>
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; height: 100%;">
-<!-- Vídeo de Exemplo -->
-<div class="visual-media" style="flex: 1; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-glass); box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; background: #000; min-height: 250px;">
-<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.8); z-index: 0;">
-<i class="ph ph-play-circle" style="font-size: 5rem; color: rgba(255,255,255,0.5); margin-bottom: 1rem;"></i>
-<span data-i18n="auto_84" style="color: rgba(255,255,255,0.5); font-size: 1.6rem;">Vídeo: Script Python processando imagens</span>
-<span data-i18n="auto_85" style="color: rgba(255,255,255,0.3); font-size: 1.2rem; margin-top: 0.5rem;">(Adicione assets/python.mp4)</span>
-</div>
-<video loop="" muted="" playsinline="" src="assets/python.mp4" style="width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1;"></video>
-</div>
-<!-- Explicação -->
-<div style="display: flex; flex-direction: column; justify-content: flex-start; gap: 2.5rem;">
-<p data-i18n="auto_86" style="font-size: 2.2rem; line-height: 1.5; color: var(--text-main);">
+
+                        <div class="callout-card callout-card--orange">
+                            <h4 data-i18n="auto_77"><i class="ph ph-stack"></i> Técnicas Comuns:</h4>
+                            <ul class="callout-list">
+                                <li data-i18n="auto_78"><strong>Álgebra de Mapas:</strong> Sobreposição de mapas (ex: Solo + Relevo = Risco de Deslizamento).</li>
+                                <li data-i18n="auto_79"><strong>Buffers:</strong> Zonas de influência (ex: 30m ao redor de um rio).</li>
+                                <li data-i18n="auto_80"><strong>Heatmaps:</strong> Mapas de calor para manchas criminais ou focos de incêndio.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 18: Automação e Programação -->
+        <section class="slide technology-slide visual-slide">
+            <div class="glass-panel">
+                <header class="slide-header">
+                    <div class="icon-wrapper gradient-bg"><i class="ph ph-file-code icon-pulse"></i></div>
+                    <h2 class="gradient-text" data-i18n="auto_83">Automação (Python)</h2>
+                </header>
+
+                <div class="two-columns two-columns--reverse content-body">
+                    <div class="visual-media">
+                        <video loop muted playsinline controls src="assets/python.mp4"></video>
+                    </div>
+
+                    <div class="prose-stack">
+                        <p class="prose-lead" data-i18n="auto_86">
                             Milhares de imagens de satélite e dados tabulares pesados não podem ser processados "na mão". Usamos <strong>Python</strong> para automatizar tudo.
                         </p>
-<div style="background: rgba(0,0,0,0.4); border-left: 4px solid #FFD54F; padding: 2rem; border-radius: 0 12px 12px 0;">
-<h4 data-i18n="auto_87" style="color: #FFD54F; font-size: 1.8rem; margin-bottom: 1.5rem;"><i class="ph ph-code"></i> Exemplo com Geopandas:</h4>
-<code style="font-size: 1.4rem; color: #a5d6ff; display: block; white-space: pre-wrap; font-family: monospace; line-height: 1.4;">import geopandas as gpd
+
+                        <div class="callout-card callout-card--amber">
+                            <h4 data-i18n="auto_87"><i class="ph ph-code"></i> Exemplo com Geopandas:</h4>
+                            <code class="code-snippet">import geopandas as gpd
 
 # Carrega os municípios do Pará
 mapa = gpd.read_file('municipios_pa.shp')
@@ -561,438 +616,434 @@ mapa = gpd.read_file('municipios_pa.shp')
 gigantes = mapa[mapa.area &gt; 10000]
 
 gigantes.plot(color='red')</code>
-</div>
-<div style="display: flex; gap: 2rem; margin-top: 1rem;">
-<span class="badge" data-i18n="auto_88" style="background: rgba(55, 118, 171, 0.2); border: 2px solid #3776AB; padding: 0.8rem 1.5rem; border-radius: 8px; color: #6bb0eb; font-weight: bold; font-size: 1.5rem;"><i class="ph ph-file-py"></i> Python</span>
-<span class="badge" data-i18n="auto_89" style="background: rgba(255, 255, 255, 0.2); border: 2px solid #fff; padding: 0.8rem 1.5rem; border-radius: 8px; color: #fff; font-weight: bold; font-size: 1.5rem;"><i class="ph ph-map-trifold"></i> GDAL / OGR</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Slide 19: Georreferenciamento -->
-<section class="slide technology-slide visual-slide">
-<div class="glass-panel" style="justify-content: flex-start; padding: 4rem;">
-<header style="display: flex; align-items: center; gap: 2rem; margin-bottom: 3rem;">
-<div class="icon-wrapper gradient-bg"><i class="ph ph-map-pin-line icon-pulse"></i></div>
-<h2 class="gradient-text" data-i18n="auto_90" style="font-size: 4.5rem; margin: 0; text-transform: uppercase;">Georreferenciamento</h2>
-</header>
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; height: 100%;">
-<!-- Explicação -->
-<div style="display: flex; flex-direction: column; justify-content: flex-start; gap: 2.5rem;">
-<p data-i18n="auto_91" style="font-size: 2.2rem; line-height: 1.5; color: var(--text-main);">
+                        </div>
+
+                        <div class="badge-row">
+                            <span class="tech-badge tech-badge--python" data-i18n="auto_88"><i class="ph ph-file-py"></i> Python</span>
+                            <span class="tech-badge tech-badge--gdal" data-i18n="auto_89"><i class="ph ph-map-trifold"></i> GDAL / OGR</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 19: Georreferenciamento -->
+        <section class="slide technology-slide visual-slide">
+            <div class="glass-panel">
+                <header class="slide-header">
+                    <div class="icon-wrapper gradient-bg"><i class="ph ph-map-pin-line icon-pulse"></i></div>
+                    <h2 class="gradient-text" data-i18n="auto_90">Georreferenciamento</h2>
+                </header>
+
+                <div class="two-columns content-body">
+                    <div class="visual-media georef-carousel" data-carousel="georef" aria-label="Coleção de imagens sobre georreferenciamento">
+                        <div class="georef-carousel__slides">
+                            <figure class="georef-carousel__slide is-active">
+                                <img src="assets/georef-survey.jpg" alt="Prisma e estação total usados em levantamento de terreno"/>
+                                <figcaption>Levantamento de campo</figcaption>
+                            </figure>
+                            <figure class="georef-carousel__slide">
+                                <img src="assets/georef-software.jpg" alt="Tela de software com processo de georreferenciamento"/>
+                                <figcaption>Georreferenciamento digital</figcaption>
+                            </figure>
+                            <figure class="georef-carousel__slide">
+                                <img src="assets/georef-gis.jpg" alt="Equipe realizando mapeamento com tecnologia GIS"/>
+                                <figcaption>Coleta e mapeamento</figcaption>
+                            </figure>
+                            <figure class="georef-carousel__slide">
+                                <img src="assets/georef-map.jpg" alt="Mapa topográfico usado para localização territorial"/>
+                                <figcaption>Mapa e território</figcaption>
+                            </figure>
+                        </div>
+                        <div class="georef-carousel__progress" aria-hidden="true"></div>
+                    </div>
+
+                    <div class="prose-stack">
+                        <p class="prose-lead" data-i18n="auto_91">
                             A "certidão de nascimento" geométrica de uma propriedade rural. Sem ela, o imóvel não pode ser desmembrado ou vendido legalmente.
                         </p>
-<div style="background: rgba(0,0,0,0.4); border-left: 4px solid #4CAF50; padding: 2rem; border-radius: 0 12px 12px 0;">
-<h4 data-i18n="auto_92" style="color: #4CAF50; font-size: 1.8rem; margin-bottom: 1.5rem;"><i class="ph ph-check-circle"></i> O Processo (SIGEF / INCRA):</h4>
-<ul style="font-size: 1.8rem; color: #bbb; line-height: 1.6; list-style: none; padding: 0;">
-<li data-i18n="auto_93"><strong style="color: white;">1. Coleta:</strong> GPS RTK mede os vértices da cerca.</li>
-<li data-i18n="auto_94"><strong style="color: white;">2. Processamento:</strong> Fechamento do polígono (Software).</li>
-<li data-i18n="auto_95"><strong style="color: white;">3. Certificação:</strong> O governo atesta que não há sobreposição com vizinhos ou terras indígenas.</li>
-</ul>
-</div>
-</div>
-<!-- Carrossel de imagens pesquisadas sobre georreferenciamento -->
-<div class="visual-media georef-carousel" data-carousel="georef" aria-label="Coleção de imagens sobre georreferenciamento">
-<div class="georef-carousel__slides">
-<figure class="georef-carousel__slide is-active"><img src="assets/georef-survey.jpg" alt="Prisma e estação total usados em levantamento de terreno"><figcaption>Levantamento de campo</figcaption></figure>
-<figure class="georef-carousel__slide"><img src="assets/georef-software.jpg" alt="Tela de software com processo de georreferenciamento"><figcaption>Georreferenciamento digital</figcaption></figure>
-<figure class="georef-carousel__slide"><img src="assets/georef-gis.jpg" alt="Equipe realizando mapeamento com tecnologia GIS"><figcaption>Coleta e mapeamento</figcaption></figure>
-<figure class="georef-carousel__slide"><img src="assets/georef-map.jpg" alt="Mapa topográfico usado para localização territorial"><figcaption>Mapa e território</figcaption></figure>
-</div>
-<div class="georef-carousel__progress" aria-hidden="true"></div>
-</div>
-</div>
-</div>
-</section>
-<!-- Slide 20: CAR -->
-<section class="slide technology-slide visual-slide">
-<div class="glass-panel" style="justify-content: flex-start; padding: 4rem;">
-<header style="display: flex; align-items: center; gap: 2rem; margin-bottom: 3rem;">
-<div class="icon-wrapper gradient-bg"><i class="ph ph-tree-evergreen icon-pulse"></i></div>
-<h2 class="gradient-text" data-i18n="auto_98" style="font-size: 4.5rem; margin: 0; text-transform: uppercase;">CAR (Cadastro Ambiental)</h2>
-</header>
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; height: 100%;">
-<!-- Vídeo de Exemplo -->
-<div class="visual-media" style="flex: 1; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-glass); box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; background: #000; min-height: 250px;">
-<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.8); z-index: 0;">
-<i class="ph ph-play-circle" style="font-size: 5rem; color: rgba(255,255,255,0.5); margin-bottom: 1rem;"></i>
-<span data-i18n="auto_99" style="color: rgba(255,255,255,0.5); font-size: 1.6rem;">Vídeo: Mapeamento de APP/RL</span>
-<span data-i18n="auto_100" style="color: rgba(255,255,255,0.3); font-size: 1.2rem; margin-top: 0.5rem;">(Adicione assets/CAR.mp4)</span>
-</div>
-<video loop="" muted="" playsinline="" src="assets/CAR.mp4" style="width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1;"></video>
-</div>
-<!-- Explicação -->
-<div style="display: flex; flex-direction: column; justify-content: flex-start; gap: 2.5rem;">
-<p data-i18n="auto_101" style="font-size: 2.2rem; line-height: 1.5; color: var(--text-main);">
+
+                        <div class="callout-card callout-card--green">
+                            <h4 data-i18n="auto_92"><i class="ph ph-check-circle"></i> O Processo (SIGEF / INCRA):</h4>
+                            <ul class="callout-list">
+                                <li data-i18n="auto_93"><strong>1. Coleta:</strong> GPS RTK mede os vértices da cerca.</li>
+                                <li data-i18n="auto_94"><strong>2. Processamento:</strong> Fechamento do polígono (Software).</li>
+                                <li data-i18n="auto_95"><strong>3. Certificação:</strong> O governo atesta que não há sobreposição com vizinhos ou terras indígenas.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 20: CAR -->
+        <section class="slide technology-slide visual-slide">
+            <div class="glass-panel">
+                <header class="slide-header">
+                    <div class="icon-wrapper gradient-bg"><i class="ph ph-tree-evergreen icon-pulse"></i></div>
+                    <h2 class="gradient-text" data-i18n="auto_98">CAR (Cadastro Ambiental)</h2>
+                </header>
+
+                <div class="two-columns two-columns--reverse content-body">
+                    <div class="visual-media">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/_zJBEMqZct8?si=ujEl0yzVPRzuwNLO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+
+                    <div class="prose-stack">
+                        <p class="prose-lead" data-i18n="auto_101">
                             Obrigatório para todo imóvel rural brasileiro. É um raio-x ambiental digitalizado, feito totalmente sobre <strong>imagens de satélite</strong>.
                         </p>
-<div style="background: rgba(0,0,0,0.4); border-left: 4px solid #8BC34A; padding: 2rem; border-radius: 0 12px 12px 0;">
-<h4 data-i18n="auto_102" style="color: #8BC34A; font-size: 1.8rem; margin-bottom: 1.5rem;"><i class="ph ph-leaf"></i> O que é mapeado?</h4>
-<ul style="font-size: 1.8rem; color: #bbb; line-height: 1.6; list-style: none; padding: 0;">
-<li data-i18n="auto_103"><strong style="color: white;">Área Total:</strong> O perímetro da fazenda.</li>
-<li data-i18n="auto_104"><strong style="color: white;">Reserva Legal (RL):</strong> O percentual de mata que não pode ser desmatado (na Amazônia, 80%).</li>
-<li data-i18n="auto_105"><strong style="color: white;">Áreas de Preservação Permanente (APP):</strong> Margens de rios, topos de morro e nascentes protegidas.</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Slide 21: Agricultura de Precisão -->
-<section class="slide technology-slide agriculture-slide visual-slide">
-<div class="glass-panel" style="justify-content: flex-start; padding: 4rem;">
-<header style="display: flex; align-items: center; gap: 2rem; margin-bottom: 3rem;">
-<div class="icon-wrapper gradient-bg"><i class="ph ph-tractor icon-pulse"></i></div>
-<h2 class="gradient-text" data-i18n="auto_106" style="font-size: 4.5rem; margin: 0; text-transform: uppercase;">Agricultura de Precisão</h2>
-</header>
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; height: 100%;">
-<!-- Explicação -->
-<div style="display: flex; flex-direction: column; justify-content: flex-start; gap: 2.5rem;">
-<p data-i18n="auto_107" style="font-size: 2.2rem; line-height: 1.5; color: var(--text-main);">
+
+                        <div class="callout-card callout-card--lime">
+                            <h4 data-i18n="auto_102"><i class="ph ph-leaf"></i> O que é mapeado?</h4>
+                            <ul class="callout-list">
+                                <li data-i18n="auto_103"><strong>Área Total:</strong> O perímetro da fazenda.</li>
+                                <li data-i18n="auto_104"><strong>Reserva Legal (RL):</strong> O percentual de mata que não pode ser desmatado (na Amazônia, 80%).</li>
+                                <li data-i18n="auto_105"><strong>Áreas de Preservação Permanente (APP):</strong> Margens de rios, topos de morro e nascentes protegidas.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 21: Agricultura de Precisão -->
+        <section class="slide technology-slide agriculture-slide visual-slide">
+            <div class="glass-panel">
+                <header class="slide-header">
+                    <div class="icon-wrapper gradient-bg"><i class="ph ph-tractor icon-pulse"></i></div>
+                    <h2 class="gradient-text" data-i18n="auto_106">Agricultura de Precisão</h2>
+                </header>
+
+                <div class="two-columns content-body">
+                    <div class="visual-media">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/V-d6E_r4c2w?si=md2iCvUgG6Npq-mh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+
+                    <div class="prose-stack">
+                        <p class="prose-lead" data-i18n="auto_107">
                             O uso da tecnologia espacial para maximizar a colheita. Esqueça o tratamento homogêneo: cada metro quadrado é tratado de forma única.
                         </p>
-<div style="background: rgba(0,0,0,0.4); border-left: 4px solid #FBC02D; padding: 2rem; border-radius: 0 12px 12px 0;">
-<h4 data-i18n="auto_108" style="color: #FBC02D; font-size: 1.8rem; margin-bottom: 1.5rem;"><i class="ph ph-plant"></i> Do Satélite ao Trator:</h4>
-<ul style="font-size: 1.8rem; color: #bbb; line-height: 1.6; list-style: none; padding: 0;">
-<li data-i18n="auto_109"><strong style="color: white;">Monitoramento (NDVI):</strong> Drones medem a fotossíntese e descobrem onde as plantas estão doentes.</li>
-<li data-i18n="auto_110"><strong style="color: white;">Taxa Variável:</strong> O mapa é enviado ao computador de bordo do trator.</li>
-<li data-i18n="auto_111"><strong style="color: white;">Execução:</strong> O trator (guiado por GPS) aplica veneno apenas onde a planta precisa. Economia e ecologia!</li>
-</ul>
-</div>
-</div>
-<!-- Vídeo de Exemplo -->
-<div class="visual-media" style="flex: 1; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-glass); box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; background: #000; min-height: 250px;">
-<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.8); z-index: 0;">
-<i class="ph ph-play-circle" style="font-size: 5rem; color: rgba(255,255,255,0.5); margin-bottom: 1rem;"></i>
-<span data-i18n="auto_112" style="color: rgba(255,255,255,0.5); font-size: 1.6rem;">Vídeo: NDVI e Trator Autônomo</span>
-<span data-i18n="auto_113" style="color: rgba(255,255,255,0.3); font-size: 1.2rem; margin-top: 0.5rem;">(Adicione assets/agricultura_de_precisao.mp4)</span>
-</div>
-<video loop="" muted="" playsinline="" src="assets/agricultura_de_precisao.mp4" style="width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1;"></video>
-</div>
-</div>
-</div>
-</section>
-<!-- Slides 22-26: Instituições e Aplicações Reais -->
-<section class="slide institution-slide">
-<div class="glass-panel" style="justify-content: flex-start; padding: 3rem 6rem;">
-<header class="institution-header">
-<div class="icon-wrapper gradient-bg"><i class="ph ph-buildings icon-pulse"></i></div>
-<h2 class="gradient-text" data-i18n="auto_114">Instituições e Aplicações Reais</h2>
-</header>
-<div class="institution-card app-card">
-<video loop="" muted="" playsinline="" controls="" src="assets/CENSIPAM.mp4"></video>
-<h3 data-i18n="sEmp1Title">CENSIPAM</h3>
-<p data-i18n="sEmp1Desc">Centro Gestor e Operacional do Sistema de Proteção da Amazônia. Monitora inteligência territorial na selva usando radares e constelações de satélites.</p>
-</div>
-</div>
-</section>
-<section class="slide institution-slide">
-<div class="glass-panel" style="justify-content: flex-start; padding: 3rem 6rem;">
-<header class="institution-header">
-<div class="icon-wrapper gradient-bg"><i class="ph ph-buildings icon-pulse"></i></div>
-<h2 class="gradient-text" data-i18n="auto_114">Instituições e Aplicações Reais</h2>
-</header>
-<div class="institution-card app-card">
-<video loop="" muted="" playsinline="" controls="" src="assets/EMBRAPA.mp4"></video>
-<h3 data-i18n="sEmp2Title">EMBRAPA</h3>
-<p data-i18n="sEmp2Desc">Aplica intensamente o geoprocessamento no zoneamento agrícola, monitoramento de qualidade do solo e agricultura de precisão para aumentar safras.</p>
-</div>
-</div>
-</section>
-<section class="slide institution-slide">
-<div class="glass-panel" style="justify-content: flex-start; padding: 3rem 6rem;">
-<header class="institution-header">
-<div class="icon-wrapper gradient-bg"><i class="ph ph-buildings icon-pulse"></i></div>
-<h2 class="gradient-text" data-i18n="auto_114">Instituições e Aplicações Reais</h2>
-</header>
-<div class="institution-card app-card">
-<video loop="" muted="" playsinline="" controls="" src="assets/CPRM.mp4"></video>
-<h3 data-i18n="sEmp3Title">CPRM (Serviço Geológico)</h3>
-<p data-i18n="sEmp3Desc">Responsável pelo mapeamento geológico nacional, fundamental para identificar áreas de risco geológico, inundações e gerir recursos hídricos e minerais.</p>
-</div>
-</div>
-</section>
-<section class="slide institution-slide">
-<div class="glass-panel" style="justify-content: flex-start; padding: 3rem 6rem;">
-<header class="institution-header">
-<div class="icon-wrapper gradient-bg"><i class="ph ph-buildings icon-pulse"></i></div>
-<h2 class="gradient-text" data-i18n="auto_114">Instituições e Aplicações Reais</h2>
-</header>
-<div class="institution-card app-card">
-<video loop="" muted="" playsinline="" controls="" src="assets/IBGE.mp4"></video>
-<h3 data-i18n="sEmp4Title">IBGE</h3>
-<p data-i18n="sEmp4Desc">O IBGE gerencia a malha geodésica e territorial do Brasil.</p>
-</div>
-</div>
-</section>
-<section class="slide institution-slide">
-<div class="glass-panel" style="justify-content: flex-start; padding: 3rem 6rem;">
-<header class="institution-header">
-<div class="icon-wrapper gradient-bg"><i class="ph ph-buildings icon-pulse"></i></div>
-<h2 class="gradient-text" data-i18n="auto_114">Instituições e Aplicações Reais</h2>
-</header>
-<div class="institution-card app-card">
-<video loop="" muted="" playsinline="" controls="" src="assets/INPE.mp4"></video>
-<h3 data-i18n="sEmp5Title">INPE</h3>
-<p data-i18n="sEmp5Desc">O INPE é referência global no monitoramento contínuo de desmatamento, com projetos como PRODES e DETER.</p>
-</div>
-</div>
-</section>
-<!-- Slide 27: Mapa Interativo (Leaflet WebGIS estilo QGIS) -->
-<section class="slide technology-slide" id="slideMap">
-<div class="glass-panel map-panel gis-panel">
-<header class="gis-header">
-<div class="gis-header-title">
-<h2 class="gradient-text slide-title-with-icon" data-i18n="auto_115"><i class="ph ph-map-trifold"></i> <span data-i18n="s6Title">Análise Espacial &amp; Mapa Interativo</span></h2>
-</div>
-</header>
 
-<!-- Janela Única Limpa do Mapa (Estilo QGIS com controles dentro do mapa) -->
-<div class="gis-map-wrapper">
-<!-- Barra de Ferramentas Flutuante (Estilo QGIS no topo esquerdo dentro do mapa) -->
-<div class="qgis-floating-toolbar" role="toolbar" aria-label="Barra de ferramentas QGIS">
-<div class="qgis-tool-group">
-<button class="gis-tool-btn is-active" data-tool="pan" type="button" data-tooltip="Mover / Identificar Feições">
-<i class="ph ph-hand-pointing"></i>
-</button>
-<button class="gis-tool-btn gis-tool-btn--action" id="gisZoomInBtn" type="button" data-tooltip="Aproximar Zoom (+)">
-<i class="ph ph-magnifying-glass-plus"></i>
-</button>
-<button class="gis-tool-btn gis-tool-btn--action" id="gisZoomOutBtn" type="button" data-tooltip="Afastar Zoom (-)">
-<i class="ph ph-magnifying-glass-minus"></i>
-</button>
-<button class="gis-tool-btn gis-tool-btn--action" id="gisResetBtn" type="button" data-tooltip="Zoom Geral (Extensão Total)">
-<i class="ph ph-arrows-out"></i>
-</button>
-</div>
+                        <div class="callout-card callout-card--gold">
+                            <h4 data-i18n="auto_108"><i class="ph ph-plant"></i> Do Satélite ao Trator:</h4>
+                            <ul class="callout-list">
+                                <li data-i18n="auto_109"><strong>Monitoramento (NDVI):</strong> Drones medem a fotossíntese e descobrem onde as plantas estão doentes.</li>
+                                <li data-i18n="auto_110"><strong>Taxa Variável:</strong> O mapa é enviado ao computador de bordo do trator.</li>
+                                <li data-i18n="auto_111"><strong>Execução:</strong> O trator (guiado por GPS) aplica insumos apenas onde a planta precisa. Economia e ecologia!</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<div class="qgis-toolbar-sep"></div>
+        <!-- Slide 22: IBGE -->
+        <section class="slide institution-slide">
+            <div class="glass-panel">
+                <header class="slide-header">
+                    <div class="icon-wrapper gradient-bg"><i class="ph ph-buildings icon-pulse"></i></div>
+                    <h2 class="gradient-text" data-i18n="auto_114">Instituições e Aplicações Reais</h2>
+                </header>
 
-<div class="qgis-tool-group">
-<button class="gis-tool-btn" data-tool="distance" type="button" data-tooltip="Medir Linha / Distância (m / km)">
-<i class="ph ph-ruler"></i>
-</button>
-<button class="gis-tool-btn" data-tool="area" type="button" data-tooltip="Medir Polígono / Área (ha)">
-<i class="ph ph-polygon"></i>
-</button>
-<button class="gis-tool-btn" data-tool="buffer" type="button" data-tooltip="Gerar Buffer Espacial (500m)">
-<i class="ph ph-circles-three-plus"></i>
-</button>
-<button class="gis-tool-btn" data-tool="point" type="button" data-tooltip="Coletar Vértice GNSS RTK">
-<i class="ph ph-crosshair"></i>
-</button>
-<button class="gis-tool-btn gis-tool-btn--danger" id="gisClearBtn" type="button" data-tooltip="Limpar Desenhos e Medições">
-<i class="ph ph-trash"></i>
-</button>
-</div>
+                <div class="two-columns two-columns--reverse institution-showcase content-body">
+                    <div class="institution-video-wrap">
+                        <video loop muted playsinline controls src="assets/IBGE.mp4"></video>
+                    </div>
+                    <div class="institution-info">
+                        <div class="institution-logo-badge">
+                            <img alt="Logo IBGE" src="assets/logo_ibge.png"/>
+                        </div>
+                        <h3 class="gradient-text" data-i18n="sEmp4Title">IBGE</h3>
+                        <p data-i18n="sEmp4Desc">O IBGE gerencia a malha geodésica oficial (SIRGAS 2000 / RBMC) e toda a base cartográfica e territorial do Brasil.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<div class="qgis-toolbar-sep"></div>
+        <!-- Slide 23: INPE -->
+        <section class="slide institution-slide">
+            <div class="glass-panel">
+                <header class="slide-header">
+                    <div class="icon-wrapper gradient-bg"><i class="ph ph-buildings icon-pulse"></i></div>
+                    <h2 class="gradient-text" data-i18n="auto_114">Instituições e Aplicações Reais</h2>
+                </header>
 
-<div class="qgis-tool-group">
-<button class="gis-tool-btn qgis-panel-toggle is-open" id="qgisToggleLayers" type="button" data-tooltip="Painel de Camadas (Layers)">
-<i class="ph ph-stack"></i> <span>Camadas</span>
-</button>
-<button class="gis-tool-btn qgis-panel-toggle" id="qgisTogglePlaces" type="button" data-tooltip="Marcadores Espaciais (Lugares)">
-<i class="ph ph-bookmarks-simple"></i> <span>Lugares</span>
-</button>
-</div>
-</div>
+                <div class="two-columns institution-showcase content-body">
+                    <div class="institution-video-wrap">
+                        <video loop muted playsinline controls src="assets/INPE.mp4"></video>
+                    </div>
+                    <div class="institution-info">
+                        <div class="institution-logo-badge">
+                            <img alt="Logo INPE" src="assets/logo_inpe.png"/>
+                        </div>
+                        <h3 class="gradient-text" data-i18n="sEmp5Title">INPE</h3>
+                        <p data-i18n="sEmp5Desc">O INPE é referência global no desenvolvimento de satélites e no monitoramento contínuo de desmatamento e queimadas, com projetos como PRODES e DETER.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- Painel Flutuante de Camadas dentro do Mapa (Estilo Árvore de Camadas do QGIS) -->
-<aside class="qgis-floating-panel is-open" id="qgisLayersPanel" aria-label="Painel de Camadas">
-<div class="qgis-panel-header">
-<span><i class="ph ph-stack"></i> Camadas &amp; Mapa Base</span>
-<button class="qgis-panel-close" data-close-panel="qgisLayersPanel" type="button" title="Minimizar painel"><i class="ph ph-x"></i></button>
-</div>
-<div class="qgis-panel-body">
-<div class="qgis-section-label">Camadas Vetoriais (SIG)</div>
-<div class="gis-layers-list">
-<label class="gis-layer-toggle">
-<input checked="" data-layer="points" type="checkbox"/>
-<span class="gis-layer-swatch" style="--swatch: #3b82f6;"></span>
-<span class="gis-layer-name">Marcos &amp; Estações GNSS</span>
-</label>
-<label class="gis-layer-toggle">
-<input checked="" data-layer="polygons" type="checkbox"/>
-<span class="gis-layer-swatch" style="--swatch: #10b981;"></span>
-<span class="gis-layer-name">Perímetros &amp; Reservas</span>
-</label>
-<label class="gis-layer-toggle">
-<input checked="" data-layer="buffers" type="checkbox"/>
-<span class="gis-layer-swatch" style="--swatch: #f59e0b;"></span>
-<span class="gis-layer-name">Buffers &amp; APP Fluvial</span>
-</label>
-<label class="gis-layer-toggle">
-<input checked="" data-layer="network" type="checkbox"/>
-<span class="gis-layer-swatch" style="--swatch: #a855f7;"></span>
-<span class="gis-layer-name">Malha Geodésica &amp; Rios</span>
-</label>
-<label class="gis-layer-toggle">
-<input checked="" data-layer="ndvi" type="checkbox"/>
-<span class="gis-layer-swatch" style="--swatch: #22c55e;"></span>
-<span class="gis-layer-name">Amostras Espectrais NDVI</span>
-</label>
-</div>
+        <!-- Slide 24: CENSIPAM -->
+        <section class="slide institution-slide">
+            <div class="glass-panel">
+                <header class="slide-header">
+                    <div class="icon-wrapper gradient-bg"><i class="ph ph-buildings icon-pulse"></i></div>
+                    <h2 class="gradient-text" data-i18n="auto_114">Instituições e Aplicações Reais</h2>
+                </header>
 
-<div class="qgis-section-label" style="margin-top: 0.6rem;">Mapa Base (Raster / Tiles)</div>
-<div class="gis-basemap-grid">
-<button class="gis-basemap-btn is-active" data-basemap="satellite" type="button">
-<i class="ph ph-planet"></i> Satélite
-</button>
-<button class="gis-basemap-btn" data-basemap="dark" type="button">
-<i class="ph ph-moon-stars"></i> Escuro
-</button>
-<button class="gis-basemap-btn" data-basemap="topo" type="button">
-<i class="ph ph-mountains"></i> Topo
-</button>
-<button class="gis-basemap-btn" data-basemap="osm" type="button">
-<i class="ph ph-road-horizon"></i> OSM
-</button>
-</div>
-</div>
-</aside>
+                <div class="two-columns two-columns--reverse institution-showcase content-body">
+                    <div class="institution-video-wrap">
+                        <video loop muted playsinline controls src="assets/CENSIPAM.mp4"></video>
+                    </div>
+                    <div class="institution-info">
+                        <div class="institution-logo-badge">
+                            <img alt="Logo CENSIPAM" src="assets/logo_censipam.png"/>
+                        </div>
+                        <h3 class="gradient-text" data-i18n="sEmp1Title">CENSIPAM</h3>
+                        <p data-i18n="sEmp1Desc">Centro Gestor e Operacional do Sistema de Proteção da Amazônia. Monitora inteligência territorial na selva usando radares e constelações de satélites.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- Painel Flutuante de Lugares (Marcadores Espaciais do QGIS) dentro do Mapa -->
-<aside class="qgis-floating-panel qgis-floating-panel--places" id="qgisPlacesPanel" aria-label="Marcadores Espaciais">
-<div class="qgis-panel-header">
-<span><i class="ph ph-bookmarks-simple"></i> Marcadores Espaciais</span>
-<button class="qgis-panel-close" data-close-panel="qgisPlacesPanel" type="button" title="Fechar"><i class="ph ph-x"></i></button>
-</div>
-<div class="qgis-panel-body">
-<div class="gis-places-list">
-<button class="gis-place-btn" data-place="ananindeua" type="button">
-<i class="ph ph-map-pin-line"></i>
-<div>
-<strong>UFPA - Campus Ananindeua</strong>
-<span>Curso de Geoprocessamento (FTG)</span>
-</div>
-</button>
-<button class="gis-place-btn is-active" data-place="ufpa" type="button">
-<i class="ph ph-graduation-cap"></i>
-<div>
-<strong>UFPA - Campus Guamá</strong>
-<span>Geociências &amp; Topografia</span>
-</div>
-</button>
-<button class="gis-place-btn" data-place="orla" type="button">
-<i class="ph ph-waves"></i>
-<div>
-<strong>Orla UFPA &amp; Rio Guamá</strong>
-<span>Hidrografia &amp; APP Fluvial</span>
-</div>
-</button>
-<button class="gis-place-btn" data-place="censipam" type="button">
-<i class="ph ph-radar"></i>
-<div>
-<strong>CENSIPAM Belém</strong>
-<span>Radar &amp; Monitoramento Amazônia</span>
-</div>
-</button>
-<button class="gis-place-btn" data-place="utinga" type="button">
-<i class="ph ph-tree-evergreen"></i>
-<div>
-<strong>Parque Estadual do Utinga</strong>
-<span>Unidade de Conservação &amp; Mananciais</span>
-</div>
-</button>
-<button class="gis-place-btn" data-place="combu" type="button">
-<i class="ph ph-leaf"></i>
-<div>
-<strong>Ilha do Combu (APA)</strong>
-<span>CAR &amp; Cobertura Vegetal</span>
-</div>
-</button>
-<button class="gis-place-btn" data-place="veropeso" type="button">
-<i class="ph ph-compass"></i>
-<div>
-<strong>Baía do Guajará &amp; Marco</strong>
-<span>Rede Geodésica SIRGAS 2000</span>
-</div>
-</button>
-</div>
-</div>
-</aside>
+        <!-- Slide 25: CPRM -->
+        <section class="slide institution-slide">
+            <div class="glass-panel">
+                <header class="slide-header">
+                    <div class="icon-wrapper gradient-bg"><i class="ph ph-buildings icon-pulse"></i></div>
+                    <h2 class="gradient-text" data-i18n="auto_114">Instituições e Aplicações Reais</h2>
+                </header>
 
-<!-- Canvas do Mapa Leaflet -->
-<div class="gis-map-canvas" id="interactiveMap"></div>
+                <div class="two-columns institution-showcase content-body">
+                    <div class="institution-video-wrap">
+                        <video loop muted playsinline controls src="assets/CPRM.mp4"></video>
+                    </div>
+                    <div class="institution-info">
+                        <div class="institution-logo-badge">
+                            <img alt="Logo CPRM / SGB" src="assets/logo_cprm.jfif"/>
+                        </div>
+                        <h3 class="gradient-text" data-i18n="sEmp3Title">CPRM (Serviço Geológico)</h3>
+                        <p data-i18n="sEmp3Desc">Responsável pelo mapeamento geológico nacional, fundamental para identificar áreas de risco geológico, inundações e gerir recursos hídricos e minerais.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- Barra de Status Inferior estilo QGIS -->
-<div class="gis-statusbar">
-<div class="gis-status-item gis-status-item--output" id="gisToolOutput">
-<i class="ph ph-hand-pointing"></i> <span>Pronto — Clique em qualquer feição para inspecionar ou selecione uma ferramenta na barra superior do mapa.</span>
-</div>
-<div class="gis-status-coords">
-<span class="gis-coord-pill" id="gisCoordUtm"><i class="ph ph-grid-four"></i> Coordenada: 782.980 E, 9.836.790 N</span>
-<span class="gis-coord-pill" id="gisCoordLatLon"><i class="ph ph-crosshair-simple"></i> -1.4754°, -48.4572°</span>
-<span class="gis-coord-pill" id="gisZoomLevel"><i class="ph ph-magnifying-glass-plus"></i> Escala 1:18.000 (Z15)</span>
-<span class="gis-coord-pill gis-coord-pill--crs"><i class="ph ph-globe"></i> EPSG:31982 (SIRGAS 2000 / UTM 22S)</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Slide 28: Encerramento -->
-<section class="slide closing-slide">
-<div class="glass-panel text-center">
-<div class="logo-wrapper mb-lg">
-<!-- UFPA -->
-<div>
-<img alt="UFPA Logo" class="header-logo header-logo-large logo-dark-theme" src="assets/Brasao-UFPA-branco.png"/>
-<img alt="UFPA Logo" class="header-logo header-logo-large logo-light-theme" src="assets/Brasao-UFPA-preto.png"/>
-</div>
-<!-- CAGEP -->
-<img alt="CAGEP Logo" class="header-logo header-logo-large" src="assets/Logo%20CAGEP.png"/>
-<!-- Turma -->
-<img alt="Turma 2025 Logo" class="header-logo header-logo-large logo-invertible" src="assets/Logo%20Turma%202025.png"/>
-</div>
-<h2 class="gradient-text justify-center" data-i18n="s8Title" style="font-size: 8.5rem; margin-top: 11rem; margin-bottom: 1.5rem; letter-spacing: 4px;">OBRIGADO!</h2>
-<div class="closing-info-grid">
-<a class="closing-info-card" href="https://www.google.com/maps/search/?api=1&amp;query=Campus+Universitario+de+Ananindeua+UFPA+Icui+Guajara" target="_blank" rel="noopener noreferrer">
-<div class="closing-info-icon">
-<i class="ph ph-map-pin-line"></i>
-</div>
-<div class="closing-info-content">
-<span class="closing-info-label">Localização do Campus</span>
-<strong>UFPA — Campus Universitário de Ananindeua</strong>
-<p>Estrada do Icuí-Guajará, s/n (esq. Av. Independência) — Bairro Icuí-Guajará, Ananindeua - PA, CEP 67125-118</p>
-<span class="closing-info-action">Ver no Google Maps <i class="ph ph-arrow-up-right"></i></span>
-</div>
-</a>
-<a class="closing-info-card" href="https://ftg.campusananindeua.ufpa.br/" target="_blank" rel="noopener noreferrer">
-<div class="closing-info-icon closing-info-icon--course">
-<i class="ph ph-globe-hemisphere-west"></i>
-</div>
-<div class="closing-info-content">
-<span class="closing-info-label">Página Oficial do Curso</span>
-<strong>Faculdade de Tecnologia em Geoprocessamento (FTG)</strong>
-<p>Conheça a grade curricular, laboratórios, projetos de pesquisa e extensão do curso na UFPA Ananindeua.</p>
-<span class="closing-info-action">ftg.campusananindeua.ufpa.br <i class="ph ph-arrow-up-right"></i></span>
-</div>
-</a>
-</div>
-<div class="controls-end" style="margin-top: 1.5rem;">
-<button class="primary-btn" data-i18n="auto_116" id="restartBtn" style="font-size: 1.6rem; padding: 1.2rem 3rem;">
-<i class="ph ph-arrow-counter-clockwise icon-spin-hover"></i> <span data-i18n="btnRestart">Reiniciar Apresentação</span>
-</button>
-</div>
-</div>
-</section>
-<!-- Navigation Controls -->
-<div class="controls-area">
-<div class="controls">
-<button class="control-btn" disabled="" id="prevBtn" title="Slide Anterior">
-<i class="ph ph-caret-left"></i>
-</button>
-<span class="slide-counter"><span id="currentCount">1</span> / <span id="totalCount">28</span></span>
-<button class="control-btn" id="nextBtn" title="Próximo Slide">
-<i class="ph ph-caret-right"></i>
-</button>
-</div>
-</div>
-</main>
-<!-- Leaflet JS -->
-<script crossorigin="" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="js/scripts.js"></script>
+        <!-- Slide 26: EMBRAPA -->
+        <section class="slide institution-slide">
+            <div class="glass-panel">
+                <header class="slide-header">
+                    <div class="icon-wrapper gradient-bg"><i class="ph ph-buildings icon-pulse"></i></div>
+                    <h2 class="gradient-text" data-i18n="auto_114">Instituições e Aplicações Reais</h2>
+                </header>
+
+                <div class="two-columns two-columns--reverse institution-showcase content-body">
+                    <div class="institution-video-wrap">
+                        <video loop muted playsinline controls src="assets/EMBRAPA.mp4"></video>
+                    </div>
+                    <div class="institution-info">
+                        <div class="institution-logo-badge">
+                            <img alt="Logo EMBRAPA" src="assets/logo_embrapa.png"/>
+                        </div>
+                        <h3 class="gradient-text" data-i18n="sEmp2Title">EMBRAPA</h3>
+                        <p data-i18n="sEmp2Desc">Aplica intensamente o geoprocessamento no zoneamento agrícola, monitoramento de qualidade do solo e agricultura de precisão para aumentar safras.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 27: Mapa Interativo (WebGIS Minimalista — 100% contido na tela do mapa) -->
+        <section class="slide technology-slide" id="slideMap">
+            <div class="glass-panel gis-panel">
+                <div class="gis-map-wrapper">
+                    <!-- Top Floating HUD inside Map: Quick Places + Basemap & Layers -->
+                    <div class="gis-map-top">
+                        <nav class="gis-places-chips" aria-label="Locais de referência">
+                            <span class="gis-places-icon" title="Mapa Interativo · SIRGAS 2000"><i class="ph ph-compass"></i></span>
+                            <button class="gis-place-btn" data-place="ananindeua" type="button">UFPA Ananindeua</button>
+                            <button class="gis-place-btn is-active" data-place="ufpa" type="button">UFPA Guamá</button>
+                            <button class="gis-place-btn" data-place="orla" type="button">Rio Guamá</button>
+                            <button class="gis-place-btn" data-place="censipam" type="button">CENSIPAM</button>
+                            <button class="gis-place-btn" data-place="utinga" type="button">Utinga</button>
+                            <button class="gis-place-btn" data-place="combu" type="button">Ilha do Combu</button>
+                            <button class="gis-place-btn" data-place="veropeso" type="button">Baía do Guajará</button>
+                        </nav>
+
+                        <div class="gis-top-right">
+                            <div class="gis-basemap-segmented" role="group" aria-label="Mapa base">
+                                <button class="gis-basemap-btn is-active" data-basemap="satellite" data-i18n="mapBaseSat" type="button">Satélite</button>
+                                <button class="gis-basemap-btn" data-basemap="topo" data-i18n="mapBaseTopo" type="button">Topo</button>
+                                <button class="gis-basemap-btn" data-basemap="dark" data-i18n="mapBaseDark" type="button">Escuro</button>
+                                <button class="gis-basemap-btn" data-basemap="osm" data-i18n="mapBaseOsm" type="button">Mapa</button>
+                            </div>
+
+                            <button class="gis-layers-trigger" id="qgisToggleLayers" type="button" title="Camadas vetoriais">
+                                <i class="ph ph-stack"></i>
+                                <span data-i18n="mapLayersBtn">Camadas</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Minimalist Left Tool Dock (Vertically Centered inside Map) -->
+                    <div class="gis-dock gis-dock--tools" role="toolbar" aria-label="Ferramentas espaciais">
+                        <button class="gis-tool-btn is-active" data-tool="pan" type="button" data-tooltip="Explorar feições">
+                            <i class="ph ph-cursor"></i>
+                        </button>
+                        <button class="gis-tool-btn" data-tool="distance" type="button" data-tooltip="Medir distância">
+                            <i class="ph ph-ruler"></i>
+                        </button>
+                        <button class="gis-tool-btn" data-tool="area" type="button" data-tooltip="Medir área (ha)">
+                            <i class="ph ph-polygon"></i>
+                        </button>
+                        <button class="gis-tool-btn" data-tool="buffer" type="button" data-tooltip="Buffer de 500m">
+                            <i class="ph ph-circles-three-plus"></i>
+                        </button>
+                        <button class="gis-tool-btn" data-tool="point" type="button" data-tooltip="Coletar vértice GNSS">
+                            <i class="ph ph-crosshair"></i>
+                        </button>
+                        <span class="gis-dock-divider" aria-hidden="true"></span>
+                        <button class="gis-tool-btn gis-tool-btn--subtle" id="gisClearBtn" type="button" data-tooltip="Limpar medições">
+                            <i class="ph ph-eraser"></i>
+                        </button>
+                    </div>
+
+                    <!-- Clean Retractable Layers Popover (Closed by default, inside Map) -->
+                    <aside class="gis-layers-popover" id="qgisLayersPanel" aria-label="Camadas vetoriais">
+                        <div class="gis-popover-head">
+                            <span data-i18n="mapLayersTitle">Camadas SIG</span>
+                            <button class="qgis-panel-close" data-close-panel="qgisLayersPanel" type="button" title="Fechar"><i class="ph ph-x"></i></button>
+                        </div>
+                        <div class="gis-layers-list">
+                            <label class="gis-layer-toggle">
+                                <input checked data-layer="points" type="checkbox"/>
+                                <span class="gis-layer-swatch" style="--swatch: #3b82f6;"></span>
+                                <span class="gis-layer-name" data-i18n="mapLayerPoints">Marcos GNSS</span>
+                            </label>
+                            <label class="gis-layer-toggle">
+                                <input checked data-layer="polygons" type="checkbox"/>
+                                <span class="gis-layer-swatch" style="--swatch: #10b981;"></span>
+                                <span class="gis-layer-name" data-i18n="mapLayerPolygons">Perímetros &amp; UC</span>
+                            </label>
+                            <label class="gis-layer-toggle">
+                                <input checked data-layer="buffers" type="checkbox"/>
+                                <span class="gis-layer-swatch" style="--swatch: #f59e0b;"></span>
+                                <span class="gis-layer-name" data-i18n="mapLayerBuffers">Buffers &amp; APP</span>
+                            </label>
+                            <label class="gis-layer-toggle">
+                                <input checked data-layer="network" type="checkbox"/>
+                                <span class="gis-layer-swatch" style="--swatch: #a855f7;"></span>
+                                <span class="gis-layer-name" data-i18n="mapLayerNetwork">Rede Geodésica &amp; Rios</span>
+                            </label>
+                            <label class="gis-layer-toggle">
+                                <input checked data-layer="ndvi" type="checkbox"/>
+                                <span class="gis-layer-swatch" style="--swatch: #22c55e;"></span>
+                                <span class="gis-layer-name" data-i18n="mapLayerNdvi">Amostras NDVI</span>
+                            </label>
+                        </div>
+                    </aside>
+
+                    <!-- Minimalist Bottom-Right Zoom Controls -->
+                    <div class="gis-dock gis-dock--zoom" role="group" aria-label="Controles de zoom">
+                        <button class="gis-zoom-btn" id="gisZoomInBtn" type="button" title="Aproximar (+)">
+                            <i class="ph ph-plus"></i>
+                        </button>
+                        <button class="gis-zoom-btn" id="gisZoomOutBtn" type="button" title="Afastar (-)">
+                            <i class="ph ph-minus"></i>
+                        </button>
+                        <button class="gis-zoom-btn" id="gisResetBtn" type="button" title="Visão geral metropolitana">
+                            <i class="ph ph-corners-out"></i>
+                        </button>
+                    </div>
+
+                    <!-- Minimalist Bottom-Left Live HUD Pill -->
+                    <div class="gis-hud-bar">
+                        <div class="gis-hud-status" id="gisToolOutput">
+                            <span class="gis-hud-dot"></span>
+                            <span data-i18n="mapDefaultHint">Clique em qualquer feição para inspecionar</span>
+                        </div>
+                        <span class="gis-hud-sep" aria-hidden="true"></span>
+                        <div class="gis-hud-coords">
+                            <span class="gis-crs-inline">SIRGAS 2000</span>
+                            <span class="gis-hud-sep" aria-hidden="true"></span>
+                            <span id="gisCoordLatLon">-1.4754°, -48.4572°</span>
+                            <span class="gis-hud-sep" aria-hidden="true"></span>
+                            <span id="gisCoordUtm">782.980 E · 9.836.790 N</span>
+                            <span class="gis-hud-sep gis-hud-sep--zoom" aria-hidden="true"></span>
+                            <span id="gisZoomLevel">Z15</span>
+                        </div>
+                    </div>
+
+                    <!-- Leaflet Map Canvas -->
+                    <div class="gis-map-canvas" id="interactiveMap"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 28: Encerramento -->
+        <section class="slide closing-slide">
+            <div class="glass-panel closing-panel text-center">
+                <div class="logo-wrapper logo-wrapper--closing">
+                    <div>
+                        <img alt="UFPA Logo" class="header-logo header-logo-large logo-dark-theme" src="assets/brasao-ufpa-branco.png"/>
+                        <img alt="UFPA Logo" class="header-logo header-logo-large logo-light-theme" src="assets/brasao-ufpa-preto.png"/>
+                    </div>
+                    <img alt="CAGEP Logo" class="header-logo header-logo-large" src="assets/logo%20cagep.png"/>
+                    <img alt="Turma 2025 Logo" class="header-logo header-logo-large logo-invertible" src="assets/logo%20turma%202025.png"/>
+                </div>
+
+                <h2 class="gradient-text closing-title" data-i18n="s8Title">OBRIGADO!</h2>
+
+                <div class="closing-info-grid">
+                    <a class="closing-info-card" href="https://www.google.com/maps/search/?api=1&amp;query=Campus+Universitario+de+Ananindeua+UFPA+Icui+Guajara" target="_blank" rel="noopener noreferrer">
+                        <div class="closing-info-icon">
+                            <i class="ph ph-map-pin-line"></i>
+                        </div>
+                        <div class="closing-info-content">
+                            <span class="closing-info-label">Localização do Campus</span>
+                            <strong>UFPA — Campus Universitário de Ananindeua</strong>
+                            <p>Estrada do Icuí-Guajará, s/n (esq. Av. Independência) — Bairro Icuí-Guajará, Ananindeua - PA, CEP 67125-118</p>
+                            <span class="closing-info-action">Ver no Google Maps <i class="ph ph-arrow-up-right"></i></span>
+                        </div>
+                    </a>
+
+                    <a class="closing-info-card" href="https://ftg.campusananindeua.ufpa.br/" target="_blank" rel="noopener noreferrer">
+                        <div class="closing-info-icon closing-info-icon--course">
+                            <i class="ph ph-globe-hemisphere-west"></i>
+                        </div>
+                        <div class="closing-info-content">
+                            <span class="closing-info-label">Página Oficial do Curso</span>
+                            <strong>Faculdade de Tecnologia em Geoprocessamento (FTG)</strong>
+                            <p>Conheça a grade curricular, laboratórios, projetos de pesquisa e extensão do curso na UFPA Ananindeua.</p>
+                            <span class="closing-info-action">ftg.campusananindeua.ufpa.br <i class="ph ph-arrow-up-right"></i></span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="controls-end">
+                    <button class="primary-btn" data-i18n="auto_116" id="restartBtn" type="button">
+                        <i class="ph ph-arrow-counter-clockwise icon-spin-hover"></i> <span data-i18n="btnRestart">Reiniciar Apresentação</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation Controls -->
+        <div class="controls-area">
+            <div class="controls">
+                <button class="control-btn" disabled id="prevBtn" title="Slide Anterior" type="button">
+                    <i class="ph ph-caret-left"></i>
+                </button>
+                <span class="slide-counter"><span id="currentCount">1</span> / <span id="totalCount">28</span></span>
+                <button class="control-btn" id="nextBtn" title="Próximo Slide" type="button">
+                    <i class="ph ph-caret-right"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Leaflet JS -->
+    <script crossorigin="" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/scripts.js"></script>
 </body>
 </html>
