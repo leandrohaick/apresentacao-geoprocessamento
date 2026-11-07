@@ -1,0 +1,21 @@
+Images used in the georeferencing carousel:
+
+- georef-survey.jpg — "Surveying prism and total station, for land surveying, in Shibuya-ku.jpg"
+  Author: Syced
+  License: CC0
+  Source: https://commons.wikimedia.org/wiki/File:Surveying_prism_and_total_station,_for_land_surveying,_in_Shibuya-ku.jpg
+
+- georef-software.jpg — "Georeferencing screenshot.jpg"
+  Author: Jheald
+  License: CC BY-SA 2.0
+  Source: https://commons.wikimedia.org/wiki/File:Georeferencing_screenshot.jpg
+
+- georef-gis.jpg — "FEMA - 39747 - GIS Trail Mapping.jpg"
+  Author: Jennifer Smits
+  License: Public domain
+  Source: https://commons.wikimedia.org/wiki/File:FEMA_-_39747_-_GIS_Trail_Mapping.jpg
+
+- georef-map.jpg — "General Map of Switzerland.jpg"
+  Author: Federal Office of Topography
+  License: Attribution-Swisstopo
+  Source: https://commons.wikimedia.org/wiki/File:General_Map_of_Switzerland.jpg
