@@ -52,37 +52,6 @@ apresentacao-geoprocessamento/
    * **Meio Ambiente:** Monitoramento de bacias hidrográficas, delimitação de APPs, Cadastro Ambiental Rural (CAR) e supressão de cobertura vegetal.
    * **Infraestrutura e Defesa Civil:** Mitigação de riscos geológicos, planejamento de traçados viários e suporte à decisão.
 
----
-
-## 🚀 Como Executar Localmente
-
-### 1. Clonar o repositório
-```bash
-git clone https://github.com/leandrohaick/apresentacao-geoprocessamento.git
-```
-
-### 2. Acessar a pasta
-```bash
-cd apresentacao-geoprocessamento
-```
-
-### 3. Abrir no navegador
-* Dê um duplo clique no arquivo `index.html`; ou
-* No **VS Code**, use a extensão **Live Server** clicando com o botão direito em `index.html` > *Open with Live Server*.
-
----
-
-## 🌐 Publicação no GitHub Pages
-
-Para publicar suas atualizações diretamente no GitHub Pages:
-
-1. Garanta que o arquivo principal se chame `index.html` na raiz do repositório.
-2. No repositório no GitHub, vá em **Settings** > **Pages**.
-3. Em **Branch**, selecione `main` (ou `master`) e a pasta `/(root)`.
-4. Clique em **Save**. O link de acesso estará disponível em instantes.
-
----
-
 ## 👤 Autor
 
 Desenvolvido por **Leandro Haick**  
